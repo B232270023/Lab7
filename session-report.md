@@ -7,7 +7,8 @@
 - Browser: Codex In-app Browser; version unavailable (tester does not know the version)
 - Charter: committed to the public repository before this session (`77fdb01`, 2026-10-15 14:55:41 +08:00)
 - Session start: 2026-10-15 15:07:23 Asia/Ulaanbaatar (UTC+08:00)
-- Planned session duration: 60 minutes, through 16:07:23 +08:00
+- Session end: 2026-10-15 16:07:23 Asia/Ulaanbaatar (UTC+08:00)
+- Session duration: 60 minutes
 - Session style: black-box, UI-first, with no inspection of `app.js`
 
 ## Chronological notes
@@ -19,7 +20,16 @@
 
 ## Time accounting
 
-Session end and per-tour time breakdown will be completed after the 60-minute session.
+Approximate activity breakdown for the 60-minute session:
+
+| Activity | Minutes | Share |
+| --- | ---: | ---: |
+| Setup, charter review, and baseline | 5 | 8% |
+| Supermodel and Fed-Ex tours | 18 | 30% |
+| Couch Potato tour | 18 | 30% |
+| Saboteur tour | 8 | 13% |
+| Confirmation, cleanup, evidence, and reporting | 11 | 19% |
+| **Total** | **60** | **100%** |
 
 ## Саадууд (issues)
 
@@ -81,3 +91,5 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:56 +08:00 — Confirmed the long-text check left no row behind: inputs and query are blank, the three seeded books remain visible, and total is 4.
 - 16:00 +08:00 — Final pre-close UI check still showed an empty form/search, the three seeded books, and total 4. No test-created rows remained.
 - 16:02 +08:00 — Cross-checked the deliverables against the charter: four tours, ten individual bug reports, and three curl evidence records are documented. Screenshot files, browser version, and a fresh-server replay remain unavailable for the recorded reasons.
+- 16:06 +08:00 — Final UI check before timebox end showed the original three books, an empty form/search, and total 4. No test records remained.
+- 16:07:23 +08:00 — Ended the 60-minute session. The app was left with its three seeded books and no test-created records.
