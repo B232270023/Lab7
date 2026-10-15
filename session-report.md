@@ -34,7 +34,7 @@ Approximate activity breakdown for the 60-minute session:
 ## Саадууд (issues)
 
 - The student could not identify the Codex In-app Browser version; the internal version page was blocked by browser safety controls.
-- Browser safety controls blocked saving captured UI screenshots to the repository. Screenshots are therefore absent from the GitHub evidence folder.
+- During the session, browser safety controls blocked exporting captured UI screenshots. After the session, the tester supplied screenshots from reproduced states; they are now saved under `screenshots/` and linked from the matching UI bug reports.
 - The visible “Хуучин хувилбар” link opened a blank tab; direct navigation to `/old` was blocked, so the destination could not be verified.
 - Starting another app instance on port 3000 failed with `EADDRINUSE`; the app ignored the attempted alternate port. Later shell checks could not reach the browser's app endpoint or identify its owner, so a clean server restart and fresh-clone replay were unavailable; no process was stopped.
 - The first shell request to the app root returned inline client-script text during connectivity setup. No app.js file was opened, and subsequent investigation stayed focused on rendered UI and API responses.
@@ -98,3 +98,8 @@ Approximate activity breakdown for the 60-minute session:
 
 - 16:10 +08:00 — Cloned the final pushed commit (`a320b5e`) to `work/Lab7-final-clone`. Verified that the clone contains the README, charter, session report, all ten bug reports, and all three curl evidence files; the clone's working tree is clean.
 - Fresh-server replay could not be completed: `app.js` is intentionally ignored and absent from the clean clone, while the app endpoint was unreachable from the shell and the earlier second-instance start failed with `EADDRINUSE`.
+
+
+## Post-session screenshot update
+
+- 2026-10-15 (after the session) — Added tester-supplied screenshots for the nine UI findings after reproducing their states. BUG-04 is an API finding and uses its complete curl -i evidence instead of a screenshot. This update records the later evidence capture; it does not change the 60-minute session chronology.
