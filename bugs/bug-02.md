@@ -1,6 +1,6 @@
 # BUG-02: Хоосон эсвэл дутуу талбартай ном нэмдэг
 
-Орчин: Reading List v2.0, Codex In-app Browser (version unavailable), Windows (version unavailable), 2026-10-15  
+Орчин: Reading List v2.0 UI reproduction, Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit, 2026-10-15
 Урьдчилсан нөхцөл: App default 3 seeded book state-д байна.
 
 ## Дахин гаргах алхам

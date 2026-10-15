@@ -4,7 +4,8 @@
 - Student code: B232270023 (repository account)
 - Application: Reading List v2.0, http://localhost:3000/
 - Runtime: Node.js v24.14.1
-- Browser: Codex In-app Browser; version unavailable (tester does not know the version)
+- Browser used for UI reproductions and screenshots: Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit
+- Additional browser used during assisted exploration: Codex In-app Browser; version unavailable
 - Charter: committed to the public repository before this session (`77fdb01`, 2026-10-15 14:55:41 +08:00)
 - Session start: 2026-10-15 15:07:23 Asia/Ulaanbaatar (UTC+08:00)
 - Session end: 2026-10-15 16:07:23 Asia/Ulaanbaatar (UTC+08:00)
@@ -33,7 +34,7 @@ Approximate activity breakdown for the 60-minute session:
 
 ## Саадууд (issues)
 
-- The student could not identify the Codex In-app Browser version; the internal version page was blocked by browser safety controls.
+- The Codex In-app Browser version could not be identified because its internal version page was blocked by browser safety controls. The tester later confirmed that all supplied UI screenshots were captured in Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit; that version is recorded for the screenshot-based UI reproductions.
 - During the session, browser safety controls blocked exporting captured UI screenshots. After the session, the tester supplied screenshots from reproduced states; they are now saved under `screenshots/` and linked from the matching UI bug reports.
 - The visible “Хуучин хувилбар” link opened a blank tab; direct navigation to `/old` was blocked, so the destination could not be verified.
 - Starting another app instance on port 3000 failed with `EADDRINUSE`; the app ignored the attempted alternate port. Later shell checks could not reach the browser's app endpoint or identify its owner, so a clean server restart and fresh-clone replay were unavailable; no process was stopped.
@@ -48,7 +49,7 @@ Approximate activity breakdown for the 60-minute session:
 - 15:11:36 +08:00 — Removed the blank test record, returning the app to its original three visible books. The API then returned total: 4 versus three objects in /api/books; saved the complete curl -i response headers and bodies in evidence/bug-01-curl.txt.
 - 15:12 +08:00 — Added a record with year not-a-year; the app accepted it and displayed NaN. Reloading preserved the invalid record. Deleted the test record afterward; the default three visible books remain.
 - 15:12 +08:00 — The visible “Хуучин хувилбар” link opened an about:blank tab. Direct navigation to the linked /old page was blocked by the browser; no alternate route was attempted.
-- 15:13 +08:00 — Captured blank-row and NaN screenshots in the CUA browser output. The browser safety policy blocked the data-URL export needed to save image files to the repository. Requested the user's browser metadata; the user said the version is unknown. README now records “Codex In-app Browser; version unavailable.”
+- 15:13 +08:00 — Captured blank-row and NaN screenshots in the CUA browser output. The browser safety policy blocked the data-URL export needed to save image files to the repository. At that time, the tester did not know the browser version; README recorded the Codex In-app Browser as version unavailable.
 
 - 15:15:10 +08:00 — Saboteur tour: sent malformed JSON to POST /api/books with Content-Type application/json. The server returned HTTP 200 OK with {"result":"OK"}, but the book list remained unchanged on follow-up GET. Saved the full response in evidence/bug-04-curl.txt; filed the misleading success response as a separate API defect.
 - 15:15 +08:00 — Session state remains the original three visible books; test-created valid, blank, and invalid-year records were removed. The “Ном нэмэгдлээ” status text remains after deletes.
@@ -90,7 +91,7 @@ Approximate activity breakdown for the 60-minute session:
 - 15:54 +08:00 — Repeated the 300-character unbroken title/author layout check. The row pushed table content beyond the viewport and exposed a horizontal scrollbar; deleted the row and reloaded the clean baseline.
 - 15:56 +08:00 — Confirmed the long-text check left no row behind: inputs and query are blank, the three seeded books remain visible, and total is 4.
 - 16:00 +08:00 — Final pre-close UI check still showed an empty form/search, the three seeded books, and total 4. No test-created rows remained.
-- 16:02 +08:00 — Cross-checked the deliverables against the charter: four tours, ten individual bug reports, and three curl evidence records are documented. Screenshot files, browser version, and a fresh-server replay remain unavailable for the recorded reasons.
+- 16:02 +08:00 — Cross-checked the deliverables against the charter: four tours, ten individual bug reports, and three curl evidence records are documented. Screenshot files and a fresh-server replay were unavailable at session end; the Codex In-app Browser version remained unknown.
 - 16:06 +08:00 — Final UI check before timebox end showed the original three books, an empty form/search, and total 4. No test records remained.
 - 16:07:23 +08:00 — Ended the 60-minute session. The app was left with its three seeded books and no test-created records.
 
@@ -103,3 +104,4 @@ Approximate activity breakdown for the 60-minute session:
 ## Post-session screenshot update
 
 - 2026-10-15 (after the session) — Added tester-supplied screenshots for the nine UI findings after reproducing their states. BUG-04 is an API finding and uses its complete curl -i evidence instead of a screenshot. This update records the later evidence capture; it does not change the 60-minute session chronology.
+- 2026-10-15 (after the session) — The tester confirmed that all supplied UI screenshots were captured in Opera and provided an About-page screenshot showing Opera One 136.0.6008.80, Chromium 152.0.7977.134, and Windows 11 64-bit. The recorded assisted SBTM exploration also used Codex In-app Browser, whose version remains unavailable.

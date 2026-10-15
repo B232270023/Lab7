@@ -1,6 +1,6 @@
 # BUG-04: Буруу JSON POST хүсэлт амжилттай мэт хариу буцаадаг
 
-Орчин: Reading List v2.0, curl.exe, Windows, 2026-10-15  
+Орчин: Reading List v2.0 API, curl.exe, Windows 11 64-bit, 2026-10-15
 Урьдчилсан нөхцөл: App ажиллаж, initial 3 book list өгөгдөлтэй байна.
 
 ## Дахин гаргах алхам
