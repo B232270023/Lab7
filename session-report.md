@@ -93,3 +93,8 @@ Approximate activity breakdown for the 60-minute session:
 - 16:02 +08:00 — Cross-checked the deliverables against the charter: four tours, ten individual bug reports, and three curl evidence records are documented. Screenshot files, browser version, and a fresh-server replay remain unavailable for the recorded reasons.
 - 16:06 +08:00 — Final UI check before timebox end showed the original three books, an empty form/search, and total 4. No test records remained.
 - 16:07:23 +08:00 — Ended the 60-minute session. The app was left with its three seeded books and no test-created records.
+
+## Post-session repository check
+
+- 16:10 +08:00 — Cloned the final pushed commit (`a320b5e`) to `work/Lab7-final-clone`. Verified that the clone contains the README, charter, session report, all ten bug reports, and all three curl evidence files; the clone's working tree is clean.
+- Fresh-server replay could not be completed: `app.js` is intentionally ignored and absent from the clean clone, while the app endpoint was unreachable from the shell and the earlier second-instance start failed with `EADDRINUSE`.
