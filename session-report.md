@@ -105,3 +105,15 @@ Approximate activity breakdown for the 60-minute session:
 
 - 2026-10-15 (after the session) — Added tester-supplied screenshots for the nine UI findings after reproducing their states. BUG-04 is an API finding and uses its complete curl -i evidence instead of a screenshot. This update records the later evidence capture; it does not change the 60-minute session chronology.
 - 2026-10-15 (after the session) — The tester confirmed that all supplied UI screenshots were captured in Opera and provided an About-page screenshot showing Opera One 136.0.6008.80, Chromium 152.0.7977.134, and Windows 11 64-bit. The recorded assisted SBTM exploration also used Codex In-app Browser, whose version remains unavailable.
+
+## Post-session fresh-clone replay
+
+- 2026-10-15 — The tester launched the final GitHub clone locally with the supplied replay launcher and performed the replay in Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit. This resolved the earlier shell/browser localhost isolation issue; the 60-minute session chronology above is unchanged.
+- BUG-01 was replayed through the API: before add, `stats.total=20` and `books.length=19`; after a valid add, 21 and 20; after deleting that test record, 20 and 19. The discrepancy persisted through both operations. See `evidence/fresh-clone-bug-01-counts.txt` and `screenshots/replay/bug-01-api-counts.png`.
+- BUG-02 was replayed with all fields empty, each individual field missing, whitespace-only title and author, and a reload. The app accepted the records, normalized a blank year to 0, and retained the records after reload. See the `bug-02-*` captures in `screenshots/replay/`.
+- BUG-03 was replayed with 2101, 0, 999, -1, 1999.5, and `not-a-year`; every value was accepted, with the nonnumeric year displayed as `NaN`. See the `bug-03-*` captures in `screenshots/replay/`.
+- BUG-04 was replayed with malformed JSON. The POST returned HTTP 200 and `{"result":"OK"}`; the before/after GET list was unchanged. See `evidence/fresh-clone-bug-04-malformed-json.md` and its terminal capture.
+- BUG-05 was replayed by adding and deleting a temporary book. The row disappeared, but the status remained “Ном нэмэгдлээ”. BUG-06 accepted the same `Clean Code` / `Robert C. Martin` pair with both 2008 and 2009 years.
+- BUG-07 was replayed for title and author: lowercase `clean` and `robert` returned no rows, while `Clean Code` and `Robert` returned matches. The exact-title result also showed three duplicate rows.
+- BUG-08's thousands separators and BUG-09's green delete controls were visible in the replay screenshots. BUG-10 was replayed with a 300-character unbroken title and author; the table extended beyond the viewport and hid adjacent columns.
+- Selected screenshots supplied by the tester are stored in `screenshots/replay/`. The replay clone contains exploratory records by design; the original repository's tracked files do not include the app fixture or those runtime records.

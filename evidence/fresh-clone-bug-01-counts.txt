@@ -1,0 +1,7 @@
+Fresh-clone replay on 2026-10-15 using Opera One 136.0.6008.80 (Chromium 152.0.7977.134).
+
+BUG-01 API counts from the supplied Node-based replay helper:
+Before add:    stats.total=20; books.length=19
+After add:     stats.total=21; books.length=20
+After delete:  stats.total=20; books.length=19
+See ../screenshots/replay/bug-01-api-counts.png.

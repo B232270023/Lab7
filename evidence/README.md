@@ -1,7 +1,9 @@
 # Evidence notes
 
-UI screenshots for several findings were captured during the CUA browser session and shown in the testing transcript. The browser URL policy blocked the data-URL page used to export screenshot bytes, and alternate browser routes are prohibited by that safety boundary. The screenshots therefore are not attached as files. If the course requires local image files in GitHub, they must be captured outside this agent workflow.
+The original CUA screenshot-export route was blocked. After the session, the tester supplied Opera screenshots; the original nine UI captures are in `../screenshots/`, and selected fresh-clone replay captures are in `../screenshots/replay/`.
 
-bug-01-curl.txt contains complete curl -i response headers and bodies for the API consistency issue.
-bug-02-curl.txt contains the missing-fields POST response and follow-up book/stats responses.
-bug-04-curl.txt contains the malformed-JSON POST response and follow-up unchanged book/stats responses.
+- `bug-01-curl.txt` contains complete curl -i response headers and bodies for the original API count mismatch.
+- `bug-02-curl.txt` contains the missing-fields POST response and follow-up book/stats responses.
+- `bug-04-curl.txt` contains the original malformed-JSON response and follow-up unchanged book/stats responses.
+- `fresh-clone-bug-01-counts.txt` records the fresh-clone stats/list counts before add, after add, and after delete; the screenshot is `../screenshots/replay/bug-01-api-counts.png`.
+- `fresh-clone-bug-04-malformed-json.md` summarizes the fresh-clone malformed-JSON replay; its terminal capture is `../screenshots/replay/bug-04-malformed-json-api.png`.
