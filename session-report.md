@@ -77,3 +77,5 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:50 +08:00 — Reviewed all ten bug reports for a descriptive BUG heading, reproduction steps, expected/actual results, and severity. The repository's whitespace check reported no errors.
 - 15:51 +08:00 — Checked `.gitignore`: `.DS_Store`, `.idea/`, and `node_modules/` are present, and the supplied `app.js` plus local server logs remain ignored.
 - 15:52 +08:00 — Expanded the evidence index to describe the complete curl records for the stats mismatch, missing-fields request, and malformed-JSON response.
+- 15:54 +08:00 — Repeated the 300-character unbroken title/author layout check. The row pushed table content beyond the viewport and exposed a horizontal scrollbar; deleted the row and reloaded the clean baseline.
+- 15:56 +08:00 — Confirmed the long-text check left no row behind: inputs and query are blank, the three seeded books remain visible, and total is 4.
