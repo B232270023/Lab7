@@ -1,10 +1,10 @@
 # SBTM exploratory session report
 
-- Tester name: pending confirmation
+- Tester name: О.Шинэбаяр
 - Student code: B232270023 (repository account)
 - Application: Reading List v2.0, http://localhost:3000/
 - Runtime: Node.js v24.14.1
-- Browser: pending tester-provided name/version; browser's internal version page was blocked by the browser safety boundary
+- Browser: Codex In-app Browser; version unavailable (tester does not know the version)
 - Charter: committed to the public repository before this session (`77fdb01`, 2026-10-15 14:55:41 +08:00)
 - Session start: 2026-10-15 15:07:23 Asia/Ulaanbaatar (UTC+08:00)
 - Planned session duration: 60 minutes, through 16:07:23 +08:00
@@ -20,6 +20,14 @@
 ## Time accounting
 
 Session end and per-tour time breakdown will be completed after the 60-minute session.
+
+## Саадууд (issues)
+
+- The student could not identify the Codex In-app Browser version; the internal version page was blocked by browser safety controls.
+- Browser safety controls blocked saving captured UI screenshots to the repository. Screenshots are therefore absent from the GitHub evidence folder.
+- The visible “Хуучин хувилбар” link opened a blank tab; direct navigation to `/old` was blocked, so the destination could not be verified.
+- Starting another app instance on port 3000 failed with `EADDRINUSE`; the app ignored the attempted alternate port. The existing listener was left running because its owner could not be identified.
+- The first shell request to the app root returned inline client-script text during connectivity setup. No app.js file was opened, and subsequent investigation stayed focused on rendered UI and API responses.
 - 15:08 +08:00 — Added a valid test book (“SBTM Test - 2026”, “QA Session”, 2026). It appeared as a fourth table row, but the summary increased from 4 to 5; the year rendered as “2,026”. This confirmed the displayed total is one higher than the rendered row count and provided a candidate year-formatting issue.
 - 15:08 +08:00 — Deleted the valid test book. The row disappeared and the summary returned to 4 / 2008. The visible success text still read “Ном нэмэгдлээ” after the delete, so deletion gave no fresh, accurate status feedback.
 - 15:08 +08:00 — Submitted the add form with title, author, and year all empty. The app accepted the submission, showed “Ном нэмэгдлээ”, created a blank table row with year 0, and raised the summary to 5. Captured a browser screenshot for evidence; file export into the repository is still unresolved.
@@ -27,15 +35,15 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 
 - 15:10:48 +08:00 — Ran curl -i against the app root to check shell connectivity. The response was 200 HTML and included inline client-script text; this was an unintended source exposure during environment setup. No app.js file was opened. Further findings were verified through rendered UI and JSON API responses, without continuing source-based investigation.
 - 15:11:06 +08:00 — Compared JSON endpoints while the blank test record existed: /api/stats returned total: 5, while /api/books returned four objects. This matched four rendered rows and further established a one-item stats/list mismatch.
-- 15:11:36 +08:00 — Removed the blank test record, returning the app to its original three visible books. The API then returned total: 4 versus three objects in /api/books; saved the complete curl -i response headers and bodies in evidence/bug-01-stats-curl.txt.
+- 15:11:36 +08:00 — Removed the blank test record, returning the app to its original three visible books. The API then returned total: 4 versus three objects in /api/books; saved the complete curl -i response headers and bodies in evidence/bug-01-curl.txt.
 - 15:12 +08:00 — Added a record with year not-a-year; the app accepted it and displayed NaN. Reloading preserved the invalid record. Deleted the test record afterward; the default three visible books remain.
 - 15:12 +08:00 — The visible “Хуучин хувилбар” link opened an about:blank tab. Direct navigation to the linked /old page was blocked by the browser; no alternate route was attempted.
 - 15:13 +08:00 — Captured blank-row and NaN screenshots in the CUA browser output. The browser safety policy blocked the data-URL export needed to save image files to the repository. Requested the user's browser metadata; the user said the version is unknown. README now records “Codex In-app Browser; version unavailable.”
 
-- 15:15:10 +08:00 — Saboteur tour: sent malformed JSON to POST /api/books with Content-Type application/json. The server returned HTTP 200 OK with {"result":"OK"}, but the book list remained unchanged on follow-up GET. Saved the full response in evidence/bug-04-malformed-json-curl.txt; filed the misleading success response as a separate API defect.
+- 15:15:10 +08:00 — Saboteur tour: sent malformed JSON to POST /api/books with Content-Type application/json. The server returned HTTP 200 OK with {"result":"OK"}, but the book list remained unchanged on follow-up GET. Saved the full response in evidence/bug-04-curl.txt; filed the misleading success response as a separate API defect.
 - 15:15 +08:00 — Session state remains the original three visible books; test-created valid, blank, and invalid-year records were removed. The “Ном нэмэгдлээ” status text remains after deletes.
 
-- 15:16:00 +08:00 — Saboteur missing-fields check: POST /api/books with an empty JSON object returned HTTP 201 Created with id 8. A follow-up GET showed the persisted record had empty title/author and no year; the stats total also increased to 5. Saved full response details in evidence/bug-02-missing-fields-curl.txt and added them to Bug 02.
+- 15:16:00 +08:00 — Saboteur missing-fields check: POST /api/books with an empty JSON object returned HTTP 201 Created with id 8. A follow-up GET showed the persisted record had empty title/author and no year; the stats total also increased to 5. Saved full response details in evidence/bug-02-curl.txt and added them to Bug 02.
 - 15:16 +08:00 — Reloaded the UI, confirmed the malformed record appeared as blank cells with year NaN, then deleted it. The page returned to the original three visible books and total 4.
 
 - 15:16 +08:00 — Confirmed feedback issue after deleting the API-created incomplete row: the row disappeared and total returned to 4, but the status still stated “Ном нэмэгдлээ”. Captured the post-delete page view in the browser output. Filed as a low-severity status-message defect.
@@ -47,3 +55,5 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:19–15:20 +08:00 — Checked year boundaries. 999 and 2101 were accepted; valid boundary values 1000 and 2100 were also accepted. Year values appeared with thousands separators (e.g., 1,000 and 2,100). Removed all test rows.
 - 15:20 +08:00 — Confirmed the visible delete controls are green although the specification says they must be red. Screenshot also shows the initial year-format defect.
 - 15:20 +08:00 — Attempted to start a separate app instance with PORT=3001 for a clean restart. The supplied app still tried port 3000 and exited with EADDRINUSE because another listener already owns that port. I did not stop an unidentified process; test data was cleaned back to the original three visible books.
+- 15:23–15:24 +08:00 — Checked a fractional year (1999.5): the app accepted it and displayed 1,999.5. Searched the author in lowercase (“robert”); no row matched although “Robert C. Martin” is present, confirming the same case-sensitivity defect for author search. Removed the temporary decimal-year record, cleared the form/search fields, and restored the three seeded rows (UI count remains 4).
+- 15:24–15:25 +08:00 — Repeated the required-field check with exactly one missing field at a time: the app accepted a record with no author, no title, and no year (the omitted year displayed as 0). Deleted each test row immediately; the seeded three-row list and count 4 are restored.
