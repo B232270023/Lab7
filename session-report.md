@@ -73,3 +73,7 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:42 +08:00 — Rechecked the live UI baseline: empty form and search, three seeded book rows, total 4. No test-created rows remained.
 - 15:44 +08:00 — Repeated the valid add flow with a unique title/year, then found the new row by both its title and author. “Бүгд” restored the full list; deleting the test row removed it and left the add-status text. Reload restored the clean baseline.
 - 15:46 +08:00 — Checked the live app again after the completed flow. Form/search remained blank, three original books were visible, and the mismatched total remained 4.
+- 15:48–15:49 +08:00 — Rechecked search behavior: lowercase “clean” and “robert” returned no rows, while “Clean Code” and “Robert” matched the seeded book. Cleared the query and reloaded to the original three-row state.
+- 15:50 +08:00 — Reviewed all ten bug reports for a descriptive BUG heading, reproduction steps, expected/actual results, and severity. The repository's whitespace check reported no errors.
+- 15:51 +08:00 — Checked `.gitignore`: `.DS_Store`, `.idea/`, and `node_modules/` are present, and the supplied `app.js` plus local server logs remain ignored.
+- 15:52 +08:00 — Expanded the evidence index to describe the complete curl records for the stats mismatch, missing-fields request, and malformed-JSON response.
