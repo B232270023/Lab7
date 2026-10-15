@@ -34,3 +34,16 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 
 - 15:15:10 +08:00 — Saboteur tour: sent malformed JSON to POST /api/books with Content-Type application/json. The server returned HTTP 200 OK with {"result":"OK"}, but the book list remained unchanged on follow-up GET. Saved the full response in evidence/bug-04-malformed-json-curl.txt; filed the misleading success response as a separate API defect.
 - 15:15 +08:00 — Session state remains the original three visible books; test-created valid, blank, and invalid-year records were removed. The “Ном нэмэгдлээ” status text remains after deletes.
+
+- 15:16:00 +08:00 — Saboteur missing-fields check: POST /api/books with an empty JSON object returned HTTP 201 Created with id 8. A follow-up GET showed the persisted record had empty title/author and no year; the stats total also increased to 5. Saved full response details in evidence/bug-02-missing-fields-curl.txt and added them to Bug 02.
+- 15:16 +08:00 — Reloaded the UI, confirmed the malformed record appeared as blank cells with year NaN, then deleted it. The page returned to the original three visible books and total 4.
+
+- 15:16 +08:00 — Confirmed feedback issue after deleting the API-created incomplete row: the row disappeared and total returned to 4, but the status still stated “Ном нэмэгдлээ”. Captured the post-delete page view in the browser output. Filed as a low-severity status-message defect.
+- 15:17 +08:00 — Rechecked the four charter tours: normal add/search/delete (Supermodel and Fed-Ex), blank and invalid field values (Couch Potato), malformed/missing-field API payloads (Saboteur). Remaining work is further focused exploration, issue evidence review, session time accounting, and final debrief.
+
+- 15:17 +08:00 — Tried adding an exact duplicate of Clean Code / Robert C. Martin / 2008. The app accepted a second identical row. Removed the duplicate afterward.
+- 15:18 +08:00 — Searched for lowercase clean: no row. Searching Clean Code returned the matching record(s). This violates the explicit case-insensitive-search specification; recorded BUG-07.
+- 15:19 +08:00 — Added a 300-character unbroken title and author. The table widened past the viewport, leaving other columns offscreen behind a horizontal scrollbar. Removed the test row.
+- 15:19–15:20 +08:00 — Checked year boundaries. 999 and 2101 were accepted; valid boundary values 1000 and 2100 were also accepted. Year values appeared with thousands separators (e.g., 1,000 and 2,100). Removed all test rows.
+- 15:20 +08:00 — Confirmed the visible delete controls are green although the specification says they must be red. Screenshot also shows the initial year-format defect.
+- 15:20 +08:00 — Attempted to start a separate app instance with PORT=3001 for a clean restart. The supplied app still tried port 3000 and exited with EADDRINUSE because another listener already owns that port. I did not stop an unidentified process; test data was cleaned back to the original three visible books.
