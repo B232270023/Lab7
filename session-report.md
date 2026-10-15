@@ -26,7 +26,7 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - The student could not identify the Codex In-app Browser version; the internal version page was blocked by browser safety controls.
 - Browser safety controls blocked saving captured UI screenshots to the repository. Screenshots are therefore absent from the GitHub evidence folder.
 - The visible “Хуучин хувилбар” link opened a blank tab; direct navigation to `/old` was blocked, so the destination could not be verified.
-- Starting another app instance on port 3000 failed with `EADDRINUSE`; the app ignored the attempted alternate port. The existing listener was left running because its owner could not be identified.
+- Starting another app instance on port 3000 failed with `EADDRINUSE`; the app ignored the attempted alternate port. Later shell checks could not reach the browser's app endpoint or identify its owner, so a clean server restart and fresh-clone replay were unavailable; no process was stopped.
 - The first shell request to the app root returned inline client-script text during connectivity setup. No app.js file was opened, and subsequent investigation stayed focused on rendered UI and API responses.
 - 15:08 +08:00 — Added a valid test book (“SBTM Test - 2026”, “QA Session”, 2026). It appeared as a fourth table row, but the summary increased from 4 to 5; the year rendered as “2,026”. This confirmed the displayed total is one higher than the rendered row count and provided a candidate year-formatting issue.
 - 15:08 +08:00 — Deleted the valid test book. The row disappeared and the summary returned to 4 / 2008. The visible success text still read “Ном нэмэгдлээ” after the delete, so deletion gave no fresh, accurate status feedback.
@@ -64,3 +64,7 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:31 +08:00 — Rechecked duplicate handling with the seeded Clean Code / Robert C. Martin pair but year 2009. The second copy was accepted despite its different year. Deleted it; the original row remained and count returned to 4.
 - 15:31 +08:00 — Cleared the form and reloaded after duplicate exploration. The original three rows remained, the search was empty, and the app reported total 4.
 - 15:31 +08:00 — Searched for a string with no matches. The result table showed no rows; “Бүгд” restored all three seeded books. Cleared the query and recorded no defect for this path.
+- 15:33 +08:00 — Submitted explicit year 0 with a valid title and author. The app accepted it and displayed 0; removed the record and confirmed count 4 with the seeded three rows.
+- 15:34 +08:00 — Cleared the year-zero test input and reloaded. The UI returned to the blank form and search with the original three records and total 4.
+- 15:35 +08:00 — Checked whether the app endpoint could be reached or identified from the shell for a clean replay. Shell requests failed and the host network inspection exposed no listener, while the browser still showed the app. Left all processes untouched and recorded the clean-server replay as blocked.
+- 15:36 +08:00 — Repeated a normal valid add/delete flow after reload. Add showed “Ном нэмэгдлээ”; deleting the new row left that same add message. Reload returned the app to three seeded rows and total 4.
