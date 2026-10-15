@@ -1,0 +1,14 @@
+Command:
+curl.exe -sS -i --max-time 5 -H 'Content-Type: application/json' --data-binary 'not-json' http://localhost:3000/api/books
+
+Response:
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Thu, 15 Oct 2026 07:15:10 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"result":"OK"}
+
+Follow-up GET /api/books returned HTTP/1.1 200 OK and the unchanged three-record array (ids 1, 2, and 3). GET /api/stats remained HTTP/1.1 200 OK with {"total":4,"newest":2008}.
