@@ -68,3 +68,6 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:34 +08:00 — Cleared the year-zero test input and reloaded. The UI returned to the blank form and search with the original three records and total 4.
 - 15:35 +08:00 — Checked whether the app endpoint could be reached or identified from the shell for a clean replay. Shell requests failed and the host network inspection exposed no listener, while the browser still showed the app. Left all processes untouched and recorded the clean-server replay as blocked.
 - 15:36 +08:00 — Repeated a normal valid add/delete flow after reload. Add showed “Ном нэмэгдлээ”; deleting the new row left that same add message. Reload returned the app to three seeded rows and total 4.
+- 15:38 +08:00 — Rechecked the valid year endpoints 1000 and 2100. Both were accepted; the table formatted them as 1,000 and 2,100. Deleted both test records and reloaded to the seeded three-row view.
+- 15:39 +08:00 — Reviewed the README findings index and evidence references. All ten reports are linked, and the curl filenames referenced by the session and bug reports match the files in `evidence/`.
+- 15:42 +08:00 — Rechecked the live UI baseline: empty form and search, three seeded book rows, total 4. No test-created rows remained.
