@@ -71,3 +71,5 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:38 +08:00 — Rechecked the valid year endpoints 1000 and 2100. Both were accepted; the table formatted them as 1,000 and 2,100. Deleted both test records and reloaded to the seeded three-row view.
 - 15:39 +08:00 — Reviewed the README findings index and evidence references. All ten reports are linked, and the curl filenames referenced by the session and bug reports match the files in `evidence/`.
 - 15:42 +08:00 — Rechecked the live UI baseline: empty form and search, three seeded book rows, total 4. No test-created rows remained.
+- 15:44 +08:00 — Repeated the valid add flow with a unique title/year, then found the new row by both its title and author. “Бүгд” restored the full list; deleting the test row removed it and left the add-status text. Reload restored the clean baseline.
+- 15:46 +08:00 — Checked the live app again after the completed flow. Form/search remained blank, three original books were visible, and the mismatched total remained 4.
