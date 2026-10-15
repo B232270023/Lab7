@@ -79,3 +79,5 @@ Session end and per-tour time breakdown will be completed after the 60-minute se
 - 15:52 +08:00 — Expanded the evidence index to describe the complete curl records for the stats mismatch, missing-fields request, and malformed-JSON response.
 - 15:54 +08:00 — Repeated the 300-character unbroken title/author layout check. The row pushed table content beyond the viewport and exposed a horizontal scrollbar; deleted the row and reloaded the clean baseline.
 - 15:56 +08:00 — Confirmed the long-text check left no row behind: inputs and query are blank, the three seeded books remain visible, and total is 4.
+- 16:00 +08:00 — Final pre-close UI check still showed an empty form/search, the three seeded books, and total 4. No test-created rows remained.
+- 16:02 +08:00 — Cross-checked the deliverables against the charter: four tours, ten individual bug reports, and three curl evidence records are documented. Screenshot files, browser version, and a fresh-server replay remain unavailable for the recorded reasons.
