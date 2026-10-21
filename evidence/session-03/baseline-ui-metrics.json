@@ -1,0 +1,22 @@
+{
+  "observedAt": "15:16:25",
+  "deleteButtons": [
+    {
+      "background": "rgb(44, 122, 75)",
+      "text": "Устгах"
+    },
+    {
+      "background": "rgb(44, 122, 75)",
+      "text": "Устгах"
+    },
+    {
+      "background": "rgb(44, 122, 75)",
+      "text": "Устгах"
+    }
+  ],
+  "layout": {
+    "documentWidth": 1280,
+    "tableWidth": 860.0000610351562,
+    "viewportWidth": 1280
+  }
+}

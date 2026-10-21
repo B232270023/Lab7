@@ -1,119 +1,213 @@
-# SBTM exploratory session report
+# Session report
 
-- Tester name: О.Шинэбаяр
-- Student code: B232270023 (repository account)
-- Application: Reading List v2.0, http://localhost:3000/
-- Runtime: Node.js v24.14.1
-- Browser used for UI reproductions and screenshots: Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit
-- Additional browser used during assisted exploration: Codex In-app Browser; version unavailable
-- Charter: committed to the public repository before this session (`77fdb01`, 2026-10-15 14:55:41 +08:00)
-- Session start: 2026-10-15 15:07:23 Asia/Ulaanbaatar (UTC+08:00)
-- Session end: 2026-10-15 16:07:23 Asia/Ulaanbaatar (UTC+08:00)
-- Session duration: 60 minutes
-- Session style: black-box, UI-first, with no inspection of `app.js`
+Тестер ба репозиторийн эзэмшигч: О.Шинэбаяр — B232270023.
+Гүйцэтгэгч: Codex, оюутны хүсэлтээр хийсэн AI-assisted нэмэлт шалгалт; оюутан өөрөө биечлэн бүх үйлдлийг хийсэн гэж тайлагнаагүй.
+Огноо ба урьдчилан тогтоосон тестийн цонх: 2026-10-21, 14:59:08–15:59:08 Asia/Ulaanbaatar (UTC+08:00), 60 минут.
+Mission: Уншлагын жагсаалт аппын чанарыг шинжлэх.
+Орчин: Reading List v2.0; Node.js v24.13.0; Codex In-app Browser, ажигласан User-Agent Chrome/155.0.0.0; Windows x64, 25H2, build 26200.9711; curl 8.21.0.
+Charter-ийн commit: `9569ae40586c1aea179317c1ca388804d5c40b8a`, 2026-10-21 14:58:03 +08:00; session эхлэхээс 65 секундийн өмнө commit хийгдэж, push амжилттай дууссан.
 
-## Chronological notes
+## Charter-ийн хураангуй
 
-- 15:07:23 +08:00 — Began the timed session after the charter commit. Opened the app in the Codex in-app browser. The page displayed three rows (Тунгалаг Тамир; Clean Code; The Pragmatic Programmer) while the summary read “Нийт ном: 4 · Хамгийн шинэ он: 2008”. This is a candidate count mismatch; verify through the “Бүгд” control and additional add/delete paths.
-- 15:07:23 +08:00 — Removed the blank row left by pre-session reconnaissance, returning the UI to three visible rows. The page still displayed the prior “Ном нэмэгдлээ” status text immediately after removal; determine whether this is stale status or an issue by observing a new delete.
-- 15:07:23 +08:00 — Attempted `curl -i http://127.0.0.1:3000/` from the workspace shell. It could not connect, although the same localhost app was reachable through the Codex in-app browser. Record as an environment obstacle; continue UI exploration and revisit API evidence via an available route.
-- 15:07:23 +08:00 — Clicked “Бүгд”; the accessibility tree reported no change. The status remained 4 while three rows were visible. This strengthens the candidate but does not yet establish the intended count contract.
+Судлах: Ном нэмэх, жагсаах, хайх, устгах, тоолуур, UI, холбоос, API баталгаажуулалт.
+Ашиглан: Шинээр асаасан гурван номтой төлөв, хүчинтэй/хоосон/захын/урт оролт, curl -i, screenshot, цагтай түүхий тэмдэглэл.
+Илрүүлэх: Спецификац зөрчсөн баталгаажуулалт, өгөгдлийн өөрчлөлт, давхардал, хайлт, мессеж, формат, өнгө, layout болон HTTP хариу.
 
-## Time accounting
+[Урьдчилан commit хийсэн charter](https://github.com/B232270023/Lab7/blob/9569ae40586c1aea179317c1ca388804d5c40b8a/charter.md) нь Business District-ийн Fed-Ex, Tourist District-ийн Supermodel, Hotel District-ийн Couch Potato, Seedy District-ийн Saboteur аяллуудын үндэслэлийг агуулна.
 
-Approximate activity breakdown for the 60-minute session:
+## Тэмдэглэл он цагийн дарааллаар
 
-| Activity | Minutes | Share |
-| --- | ---: | ---: |
-| Setup, charter review, and baseline | 5 | 8% |
-| Supermodel and Fed-Ex tours | 18 | 30% |
-| Couch Potato tour | 18 | 30% |
-| Saboteur tour | 8 | 13% |
-| Confirmation, cleanup, evidence, and reporting | 11 | 19% |
-| **Total** | **60** | **100%** |
+Доорх нь session-ийн явцад нэмсэн түүхий тэмдэглэлийн бүтэн хуулбар; алдаатай анхны тайлбарыг хожуу засварласан бол залруулгыг мөн хэвээр хадгалсан. Эх файл: [raw-notes.md](sessions/2026-10-21/raw-notes.md). 15:59:08-аас хойших мөрүүд нь post-window ажил бөгөөд 60 минутад ороогүй.
 
-## Саадууд (issues)
+```text
+# Session 03 raw notes
 
-- The Codex In-app Browser version could not be identified because its internal version page was blocked by browser safety controls. The tester later confirmed that all supplied UI screenshots were captured in Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit; that version is recorded for the screenshot-based UI reproductions.
-- During the session, browser safety controls blocked exporting captured UI screenshots. After the session, the tester supplied screenshots from reproduced states; they are now saved under `screenshots/` and linked from the matching UI bug reports.
-- The visible “Хуучин хувилбар” link opened a blank tab; direct navigation to `/old` was blocked, so the destination could not be verified.
-- Starting another app instance on port 3000 failed with `EADDRINUSE`; the app ignored the attempted alternate port. Later shell checks could not reach the browser's app endpoint or identify its owner, so a clean server restart and fresh-clone replay were unavailable; no process was stopped.
-- The first shell request to the app root returned inline client-script text during connectivity setup. No app.js file was opened, and subsequent investigation stayed focused on rendered UI and API responses.
-- 15:08 +08:00 — Added a valid test book (“SBTM Test - 2026”, “QA Session”, 2026). It appeared as a fourth table row, but the summary increased from 4 to 5; the year rendered as “2,026”. This confirmed the displayed total is one higher than the rendered row count and provided a candidate year-formatting issue.
-- 15:08 +08:00 — Deleted the valid test book. The row disappeared and the summary returned to 4 / 2008. The visible success text still read “Ном нэмэгдлээ” after the delete, so deletion gave no fresh, accurate status feedback.
-- 15:08 +08:00 — Submitted the add form with title, author, and year all empty. The app accepted the submission, showed “Ном нэмэгдлээ”, created a blank table row with year 0, and raised the summary to 5. Captured a browser screenshot for evidence; file export into the repository is still unresolved.
-- 15:09 +08:00 — Searched for lowercase “clean”; no rows matched. Searching exact “Clean Code” returned one row, and partial author “Robert” returned Clean Code. “Бүгд” restored all four rendered rows, while the summary remained 5. Case sensitivity was observed but is not yet counted as a defect because the specification does not state case-insensitive search.
+Executor: Codex, AI-assisted testing requested by О.Шинэбаяр (B232270023).
+Start: 2026-10-21 14:59:08 +08:00
+Planned end: 2026-10-21 15:59:08 +08:00
+Charter: 9569ae40586c1aea179317c1ca388804d5c40b8a, committed and pushed before this start.
+Environment: Reading List v2.0; Node.js v24.13.0; Windows x64; Codex In-app Browser observed User-Agent Chrome/155.0.0.0.
+Method: black-box UI and curl; no app.js source inspection. This file is appended during the timebox. Reports are written afterward. Timestamps use UTC+08:00.
 
-- 15:10:48 +08:00 — Ran curl -i against the app root to check shell connectivity. The response was 200 HTML and included inline client-script text; this was an unintended source exposure during environment setup. No app.js file was opened. Further findings were verified through rendered UI and JSON API responses, without continuing source-based investigation.
-- 15:11:06 +08:00 — Compared JSON endpoints while the blank test record existed: /api/stats returned total: 5, while /api/books returned four objects. This matched four rendered rows and further established a one-item stats/list mismatch.
-- 15:11:36 +08:00 — Removed the blank test record, returning the app to its original three visible books. The API then returned total: 4 versus three objects in /api/books; saved the complete curl -i response headers and bodies in evidence/bug-01-curl.txt.
-- 15:12 +08:00 — Added a record with year not-a-year; the app accepted it and displayed NaN. Reloading preserved the invalid record. Deleted the test record afterward; the default three visible books remain.
-- 15:12 +08:00 — The visible “Хуучин хувилбар” link opened an about:blank tab. Direct navigation to the linked /old page was blocked by the browser; no alternate route was attempted.
-- 15:13 +08:00 — Captured blank-row and NaN screenshots in the CUA browser output. The browser safety policy blocked the data-URL export needed to save image files to the repository. At that time, the tester did not know the browser version; README recorded the Codex In-app Browser as version unavailable.
+- 14:59:08 — Setup phase begins. The app was restarted during preparation and GET /api/books verified the original three seeded objects. Browser User-Agent was rendered by a separate localhost diagnostic endpoint. The interrupted session 02 is not included in this timebox.
 
-- 15:15:10 +08:00 — Saboteur tour: sent malformed JSON to POST /api/books with Content-Type application/json. The server returned HTTP 200 OK with {"result":"OK"}, but the book list remained unchanged on follow-up GET. Saved the full response in evidence/bug-04-curl.txt; filed the misleading success response as a separate API defect.
-- 15:15 +08:00 — Session state remains the original three visible books; test-created valid, blank, and invalid-year records were removed. The “Ном нэмэгдлээ” status text remains after deletes.
+- 14:59:32 — Setup baseline screenshot saved. Three seeded UI rows, total 4, years with thousands separators, green delete buttons. BUG-01/08/09 are visible independently of test-created data. Browser-version screenshot also saved.
 
-- 15:16:00 +08:00 — Saboteur missing-fields check: POST /api/books with an empty JSON object returned HTTP 201 Created with id 8. A follow-up GET showed the persisted record had empty title/author and no year; the stats total also increased to 5. Saved full response details in evidence/bug-02-curl.txt and added them to Bug 02.
-- 15:16 +08:00 — Reloaded the UI, confirmed the malformed record appeared as blank cells with year NaN, then deleted it. The page returned to the original three visible books and total 4.
+- 15:00:01 — Setup: full curl -i baseline is saved in evidence/session-03/bug-01-curl.txt; three objects versus total=4. Compared screenshot with the API to distinguish a render issue from a count-response issue. Test design and execution phase begins now.
 
-- 15:16 +08:00 — Confirmed feedback issue after deleting the API-created incomplete row: the row disappeared and total returned to 4, but the status still stated “Ном нэмэгдлээ”. Captured the post-delete page view in the browser output. Filed as a low-severity status-message defect.
-- 15:17 +08:00 — Rechecked the four charter tours: normal add/search/delete (Supermodel and Fed-Ex), blank and invalid field values (Couch Potato), malformed/missing-field API payloads (Saboteur). Remaining work is further focused exploration, issue evidence review, session time accounting, and final debrief.
+- 15:00:35 — Fed-Ex: S03 Valid Flow / Session Tester / 2026 accepted from the fresh baseline. Four rows, total 5, newest 2026; saved valid-add.jpg. The off-by-one count survives an add (BUG-01).
 
-- 15:17 +08:00 — Tried adding an exact duplicate of Clean Code / Robert C. Martin / 2008. The app accepted a second identical row. Removed the duplicate afterward.
-- 15:18 +08:00 — Searched for lowercase clean: no row. Searching Clean Code returned the matching record(s). This violates the explicit case-insensitive-search specification; recorded BUG-07.
-- 15:19 +08:00 — Added a 300-character unbroken title and author. The table widened past the viewport, leaving other columns offscreen behind a horizontal scrollbar. Removed the test row.
-- 15:19–15:20 +08:00 — Checked year boundaries. 999 and 2101 were accepted; valid boundary values 1000 and 2100 were also accepted. Year values appeared with thousands separators (e.g., 1,000 and 2,100). Removed all test rows.
-- 15:20 +08:00 — Confirmed the visible delete controls are green although the specification says they must be red. Screenshot also shows the initial year-format defect.
-- 15:20 +08:00 — Attempted to start a separate app instance with PORT=3001 for a clean restart. The supplied app still tried port 3000 and exited with EADDRINUSE because another listener already owns that port. I did not stop an unidentified process; test data was cleaned back to the original three visible books.
-- 15:23–15:24 +08:00 — Checked a fractional year (1999.5): the app accepted it and displayed 1,999.5. Searched the author in lowercase (“robert”); no row matched although “Robert C. Martin” is present, confirming the same case-sensitivity defect for author search. Removed the temporary decimal-year record, cleared the form/search fields, and restored the three seeded rows (UI count remains 4).
-- 15:24–15:25 +08:00 — Repeated the required-field check with exactly one missing field at a time: the app accepted a record with no author, no title, and no year (the omitted year displayed as 0). Deleted each test row immediately; the seeded three-row list and count 4 are restored.
-- 15:28–15:29 +08:00 — Submitted records with a whitespace-only title and then a whitespace-only author, each with the other fields valid. Both were accepted. Deleted both records and confirmed the UI returned to the seeded three rows and count 4.
-- 15:29 +08:00 — Reloaded the app after cleanup. The form and search were blank, all three seeded records remained, and the UI still reported total 4; no exploratory records remained.
-- 15:30 +08:00 — Submitted year -1 with a valid title and author. The app accepted the record and displayed -1 in the year column. Deleted it immediately; three seeded rows and count 4 were restored.
-- 15:30 +08:00 — Cleared the remaining form values and reloaded once more; the page returned to the clean three-record view with count 4.
-- 15:31 +08:00 — Rechecked duplicate handling with the seeded Clean Code / Robert C. Martin pair but year 2009. The second copy was accepted despite its different year. Deleted it; the original row remained and count returned to 4.
-- 15:31 +08:00 — Cleared the form and reloaded after duplicate exploration. The original three rows remained, the search was empty, and the app reported total 4.
-- 15:31 +08:00 — Searched for a string with no matches. The result table showed no rows; “Бүгд” restored all three seeded books. Cleared the query and recorded no defect for this path.
-- 15:33 +08:00 — Submitted explicit year 0 with a valid title and author. The app accepted it and displayed 0; removed the record and confirmed count 4 with the seeded three rows.
-- 15:34 +08:00 — Cleared the year-zero test input and reloaded. The UI returned to the blank form and search with the original three records and total 4.
-- 15:35 +08:00 — Checked whether the app endpoint could be reached or identified from the shell for a clean replay. Shell requests failed and the host network inspection exposed no listener, while the browser still showed the app. Left all processes untouched and recorded the clean-server replay as blocked.
-- 15:36 +08:00 — Repeated a normal valid add/delete flow after reload. Add showed “Ном нэмэгдлээ”; deleting the new row left that same add message. Reload returned the app to three seeded rows and total 4.
-- 15:38 +08:00 — Rechecked the valid year endpoints 1000 and 2100. Both were accepted; the table formatted them as 1,000 and 2,100. Deleted both test records and reloaded to the seeded three-row view.
-- 15:39 +08:00 — Reviewed the README findings index and evidence references. All ten reports are linked, and the curl filenames referenced by the session and bug reports match the files in `evidence/`.
-- 15:42 +08:00 — Rechecked the live UI baseline: empty form and search, three seeded book rows, total 4. No test-created rows remained.
-- 15:44 +08:00 — Repeated the valid add flow with a unique title/year, then found the new row by both its title and author. “Бүгд” restored the full list; deleting the test row removed it and left the add-status text. Reload restored the clean baseline.
-- 15:46 +08:00 — Checked the live app again after the completed flow. Form/search remained blank, three original books were visible, and the mismatched total remained 4.
-- 15:48–15:49 +08:00 — Rechecked search behavior: lowercase “clean” and “robert” returned no rows, while “Clean Code” and “Robert” matched the seeded book. Cleared the query and reloaded to the original three-row state.
-- 15:50 +08:00 — Reviewed all ten bug reports for a descriptive BUG heading, reproduction steps, expected/actual results, and severity. The repository's whitespace check reported no errors.
-- 15:51 +08:00 — Checked `.gitignore`: `.DS_Store`, `.idea/`, and `node_modules/` are present, and the supplied `app.js` plus local server logs remain ignored.
-- 15:52 +08:00 — Expanded the evidence index to describe the complete curl records for the stats mismatch, missing-fields request, and malformed-JSON response.
-- 15:54 +08:00 — Repeated the 300-character unbroken title/author layout check. The row pushed table content beyond the viewport and exposed a horizontal scrollbar; deleted the row and reloaded the clean baseline.
-- 15:56 +08:00 — Confirmed the long-text check left no row behind: inputs and query are blank, the three seeded books remain visible, and total is 4.
-- 16:00 +08:00 — Final pre-close UI check still showed an empty form/search, the three seeded books, and total 4. No test-created rows remained.
-- 16:02 +08:00 — Cross-checked the deliverables against the charter: four tours, ten individual bug reports, and three curl evidence records are documented. Screenshot files and a fresh-server replay were unavailable at session end; the Codex In-app Browser version remained unknown.
-- 16:06 +08:00 — Final UI check before timebox end showed the original three books, an empty form/search, and total 4. No test records remained.
-- 16:07:23 +08:00 — Ended the 60-minute session. The app was left with its three seeded books and no test-created records.
+- 15:00:56 — BUG-05: reloaded after add (status became empty), then deleted only S03 Valid Flow. Three original books remain; status newly shows Ном нэмэгдлээ. Saved bug-05.jpg. This proves incorrect delete feedback independently of an old add message. Leaving this tab untouched temporarily to observe whether delayed feedback corrects it; further tests use another tab.
 
-## Post-session repository check
+- 15:01:13 — Fresh server reset before missing-field tests; original three records confirmed. The previous tab's status observation is a client-side observation only and will not be used as proof of server persistence.
 
-- 16:10 +08:00 — Cloned the final pushed commit (`a320b5e`) to `work/Lab7-final-clone`. Verified that the clone contains the README, charter, session report, all ten bug reports, and all three curl evidence files; the clone's working tree is clean.
-- Fresh-server replay could not be completed: `app.js` is intentionally ignored and absent from the clean clone, while the app endpoint was unreachable from the shell and the earlier second-instance start failed with `EADDRINUSE`.
+- 15:08:27 — Couch Potato: on a fresh three-book server, all-empty submission created a fourth row with empty title/author and year 0; total 5; success message. Saved bug-02.jpg immediately. Check reload and server record to exclude a transient client-only row.
 
+- 15:08:50 — GUI empty submission persisted after reload; API recorded title/author empty and year 0. Separately restarted, confirmed three records, then POST {} via curl.exe: HTTP 201, id 4, empty title/author with year absent. Saved complete request responses and both variants. Same missing-required-fields bug, not separate findings.
 
-## Post-session screenshot update
+- 15:09:03 — Clarification of the preceding persistence note: the GUI-created record stores year as the empty string "", while the UI converts it to display 0. The {} API variant omits year entirely. Do not claim that the GUI stored numeric zero.
 
-- 2026-10-15 (after the session) — Added tester-supplied screenshots for the nine UI findings after reproducing their states. BUG-04 is an API finding and uses its complete curl -i evidence instead of a screenshot. This update records the later evidence capture; it does not change the 60-minute session chronology.
-- 2026-10-15 (after the session) — The tester confirmed that all supplied UI screenshots were captured in Opera and provided an About-page screenshot showing Opera One 136.0.6008.80, Chromium 152.0.7977.134, and Windows 11 64-bit. The recorded assisted SBTM exploration also used Codex In-app Browser, whose version remains unavailable.
+- 15:09:20 — Restarted to isolate a single missing-author input. The API-created absent year had rendered NaN after reload, a display difference from the all-empty GUI submission's 0.
 
-## Post-session fresh-clone replay
+- 15:09:37 — Missing-author variant from a new server: S03 Missing Author / empty author / 2026 was accepted. Fourth row has a blank author. Saved missing-author.jpg (BUG-02).
 
-- 2026-10-15 — The tester launched the final GitHub clone locally with the supplied replay launcher and performed the replay in Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit. This resolved the earlier shell/browser localhost isolation issue; the 60-minute session chronology above is unchanged.
-- BUG-01 was replayed through the API: before add, `stats.total=20` and `books.length=19`; after a valid add, 21 and 20; after deleting that test record, 20 and 19. The discrepancy persisted through both operations. See `evidence/fresh-clone-bug-01-counts.txt` and `screenshots/replay/bug-01-api-counts.png`.
-- BUG-02 was replayed with all fields empty, each individual field missing, whitespace-only title and author, and a reload. The app accepted the records, normalized a blank year to 0, and retained the records after reload. See the `bug-02-*` captures in `screenshots/replay/`.
-- BUG-03 was replayed with 2101, 0, 999, -1, 1999.5, and `not-a-year`; every value was accepted, with the nonnumeric year displayed as `NaN`. See the `bug-03-*` captures in `screenshots/replay/`.
-- BUG-04 was replayed with malformed JSON. The POST returned HTTP 200 and `{"result":"OK"}`; the before/after GET list was unchanged. See `evidence/fresh-clone-bug-04-malformed-json.md` and its terminal capture.
-- BUG-05 was replayed by adding and deleting a temporary book. The row disappeared, but the status remained “Ном нэмэгдлээ”. BUG-06 accepted the same `Clean Code` / `Robert C. Martin` pair with both 2008 and 2009 years.
-- BUG-07 was replayed for title and author: lowercase `clean` and `robert` returned no rows, while `Clean Code` and `Robert` returned matches. The exact-title result also showed three duplicate rows.
-- BUG-08's thousands separators and BUG-09's green delete controls were visible in the replay screenshots. BUG-10 was replayed with a 300-character unbroken title and author; the table extended beyond the viewport and hid adjacent columns.
-- Selected screenshots supplied by the tester are stored in `screenshots/replay/`. The replay clone contains exploratory records by design; the original repository's tracked files do not include the app fixture or those runtime records.
+- 15:10:05 — Fresh-server missing-title variant accepted: empty title / S03 Missing Title Author / 2026. Saved missing-title.jpg. The empty title and empty author observations belong in the same required-fields report.
+
+- 15:10:38 — Missing-year variant from a fresh process accepted S03 Missing Year / Session Tester / empty year; UI displays 0 and newest stays 2008. Saved missing-year.jpg.
+
+- 15:11:07 — Fresh-server whitespace-title variant accepted exactly one U+0020 character as title with S03 Space Title Author / 2026. Saved whitespace-title.jpg. Treat whitespace-only mandatory names as empty under the usable-name expectation; this is grouped with BUG-02.
+
+- 15:11:36 — Fresh-server whitespace-author variant accepted S03 Space Author / one U+0020 / 2026. Saved whitespace-author.jpg. Required-field exploration covers all empty, title-only omission, author-only omission, year-only omission, and whitespace-only title/author.
+
+- 15:11:54 — Fresh reset before year-boundary exploration. Starting one bounded incomplete POST with low-rate GET controls to investigate the Saboteur availability question; UI exploration continues on the same server, without assuming a timeout requirement from the oracle.
+
+- 15:12:24 — BUG-03 primary replay: new server with three seeds, added S03 Year 2101 / Session Tester / 2101; accepted as fourth row, year 2,101, newest 2101, total 5. Saved bug-03.jpg. The incomplete HTTP client did not block the operation.
+
+- 15:12:54 — Year variation "999": matching added rows=1; visible row="S03 Year 999\tSession Tester\t999\tУстгах". Saved year-999.jpg. This series starts with three seeds and removes each test row before the next variation; no server restart between variations.
+
+- 15:12:55 — Year variation "0": matching added rows=1; visible row="S03 Year 0\tSession Tester\t0\tУстгах". Saved year-zero.jpg. This series starts with three seeds and removes each test row before the next variation; no server restart between variations.
+
+- 15:12:55 — Year variation "-1": matching added rows=1; visible row="S03 Year -1\tSession Tester\t-1\tУстгах". Saved year-negative.jpg. This series starts with three seeds and removes each test row before the next variation; no server restart between variations.
+
+- 15:12:56 — Year variation "1999.5": matching added rows=1; visible row="S03 Year 1999.5\tSession Tester\t1,999.5\tУстгах". Saved year-decimal.jpg. This series starts with three seeds and removes each test row before the next variation; no server restart between variations.
+
+- 15:12:57 — Year variation "1000": matching added rows=1; visible row="S03 Year 1000\tSession Tester\t1,000\tУстгах". Saved year-valid-1000.jpg. This series starts with three seeds and removes each test row before the next variation; no server restart between variations.
+
+- 15:12:58 — Year variation "2100": matching added rows=1; visible row="S03 Year 2100\tSession Tester\t2,100\tУстгах". Saved year-valid-2100.jpg. This series starts with three seeds and removes each test row before the next variation; no server restart between variations.
+
+- 15:13:14 — Delayed feedback observation in the untouched first tab: incorrect delete message still visible (exact matches=1). Saved delete-message-later.jpg. This is only a client-message observation; intervening server restarts mean it is not evidence of unchanged server records.
+
+- 15:13:40 — not-a-year accepted; row shows NaN; saved year-nonnumeric.jpg. Checking API persistence rather than inferring the stored type from the displayed NaN.
+
+- 15:14:14 — Confirmed persisted year is the string not-a-year (full GET saved). Starting a bounded 64-byte incomplete-JSON upload at 1 byte/s to see whether delayed completion changes the malformed-JSON response; other UI work continues. No source inspection.
+
+- 15:14:52 — Additional keyboard/Unicode question: entered S03 Монгол Өгүүллэг / Тест Зохиолч / 2026, pressed Return in the year field; no row was added. The lab does not specify Enter-to-submit, so this observation is not filed as a confirmed defect. Next use the explicit add button as a control.
+
+- 15:15:09 — Explicit add accepted the Mongolian title/author without corrupted glyphs. Search Өгүүллэг returns the new book by a title substring. Saved unicode-valid-add.jpg; now compare the lowercase Cyrillic form.
+
+- 15:15:47 — Cyrillic case comparison: Өгүүллэг matched the added book, өгүүллэг returned no data rows. Saved search-cyrillic-lowercase.jpg; grouped with BUG-07. Slow malformed upload actually measured 65 bytes / 65.00 seconds and still returned HTTP 200 result=OK; the earlier provisional note said 64 bytes, corrected by the measured transcript.
+
+- 15:16:00 — Author comparison gives the same result: Тест Зохиолч matches, тест зохиолч returns no rows. Saved search-cyrillic-author.jpg. Search examines both fields but preserves case sensitivity; this narrows BUG-07 to the comparison behavior rather than a missing author search.
+
+- 15:16:25 — Supermodel baseline metrics from visible DOM: {"deleteButtons":[{"background":"rgb(44, 122, 75)","text":"Устгах"},{"background":"rgb(44, 122, 75)","text":"Устгах"},{"background":"rgb(44, 122, 75)","text":"Устгах"}],"layout":{"documentWidth":1280,"tableWidth":860.0000610351562,"viewportWidth":1280}}. Read-only computed-style/layout checks support the visual green-delete finding and establish a normal-width control before long-text testing. Saved baseline-ui-metrics.json.
+
+- 15:17:04 — Supermodel text review: add button visible label is "Нэмэx"; code points [{"character":"Н","codePoint":"U+041D"},{"character":"э","codePoint":"U+044D"},{"character":"м","codePoint":"U+043C"},{"character":"э","codePoint":"U+044D"},{"character":"x","codePoint":"U+0078"}]. Last letter is Latin x (U+0078), whereas Mongolian Нэмэх ends with Cyrillic х (U+0445). Candidate BUG-12 under the typo-free-text oracle; DOM text evidence saved in add-button-label.json.
+
+- 15:18:05 — Saboteur investigation finished: incomplete POST timed out with 408 at 329.8s while control GETs remained responsive (1–8ms in this run). Not filed as a bug because the oracle gives no timeout duration. Restarted for BUG-04 primary replay: not-json POST returned HTTP 200 and result=OK, followed by unchanged three-book GET and total 4. All headers/bodies saved in bug-04-curl.txt.
+
+- 15:18:27 — Restarted for duplicate-pair tests; three seeded books confirmed. Keep title/author identical to the seeded Clean Code pair; vary year only after the primary exact-duplicate observation.
+
+- 15:18:45 — BUG-06 primary fresh replay: Clean Code / Robert C. Martin / 2008 accepted despite the identical seeded pair. Two identical rows now visible; total 5. Saved bug-06.jpg immediately.
+
+- 15:19:11 — Same title/author with year 2009 also accepted: three Clean Code / Robert C. Martin rows (2008 seeded, 2008 duplicate, 2009 duplicate), newest 2009. Saved duplicate-different-year.jpg. The duplicate key in the oracle is the title/author pair, not a three-field key.
+
+- 15:19:25 — Fresh reset for the primary case-insensitive search replay, removing duplicate-related ambiguity. Original Clean Code / Robert C. Martin is the sole matching record.
+
+- 15:19:44 — BUG-07 primary fresh replay: query clean returned zero data rows although seeded Clean Code is present. Saved bug-07.jpg. Next compare the exact-case control.
+
+- 15:19:57 — Exact-case query Clean Code returns one seeded row. Saved search-exact-title.jpg. The positive control confirms that the missing lowercase result is not due to an absent record or failed endpoint.
+
+- 15:19:58 — Search variation "robert": visible rows including header=["ГарчигЗохиолчОн"]. Saved search-lowercase-author.jpg.
+
+- 15:19:58 — Search variation "Robert": visible rows including header=["ГарчигЗохиолчОн","Clean CodeRobert C. Martin2,008Устгах"]. Saved search-exact-author.jpg.
+
+- 15:19:59 — Search variation "S03 No Such Book": visible rows including header=["ГарчигЗохиолчОн"]. Saved search-no-match.jpg.
+
+- 15:19:59 — Search variation "": visible rows including header=["ГарчигЗохиолчОн","Тунгалаг ТамирЧ.Лодойдамба1,971Устгах","Clean CodeRobert C. Martin2,008Устгах","The Pragmatic ProgrammerD.Thomas & A.Hunt1,999Устгах"]. Saved search-empty.jpg.
+
+- 15:20:22 — Restarted for long-input layout replay. Positive search controls are complete: exact title/author match, no-match query empty, empty query returns all three. Lowercase author and title failed as BUG-07. Long-text comparison will use the normal 1280-pixel viewport already measured.
+
+- 15:20:46 — BUG-10 fresh replay: title L×300, author A×300, year 2026 accepted. Visible DOM metrics {"documentWidth":6255,"tableWidth":6045.00048828125,"viewportWidth":1280}. Baseline table width was 860 at the same 1280 viewport. Saved bug-10.jpg and long-text-ui-metrics.json immediately; neighboring columns leave the visible area.
+
+- 15:21:00 — Removed the long-text row, reloaded, and measured {"documentWidth":1280,"tableWidth":860.0000610351562,"viewportWidth":1280}. Width returns to the normal baseline, supporting an input-dependent layout defect rather than a permanently mis-sized browser.
+
+- 15:21:37 — Fresh-server route investigation: /old returns HTTP 500 Internal Server Error; subsequent /api/books remains HTTP 200 with three seeds. Saved full curl responses in bug-11-curl.txt. Next follow the actual UI link in this same fresh process.
+
+- 15:21:55 — BUG-11 primary fresh replay: clicked the actual Хуучин хувилбар link on the root page; it navigated to /old and displayed Internal Server Error. Saved bug-11.jpg immediately. Paired curl evidence proves HTTP 500, while the main API remains healthy.
+
+- 15:24:02 — BUG-12 text confirmation on the freshly restarted root page: visible add-button text remains "Нэмэx", ending in Latin x U+0078, not Cyrillic х U+0445. This violates the typo-free Mongolian text requirement; saved bug-12.jpg alongside the earlier DOM code-point JSON. No implementation code was inspected.
+
+- 15:24:33 — Limited keyboard observation: Tab from title moves to author, year, add button, then search input in the expected visual order. No keyboard-trap defect observed in this short path; this is not a complete accessibility audit. No add/delete was activated during this focus test.
+
+- 15:25:24 — Fed-Ex special-character probe: input title S03 <b>Literal</b> & "quotes", author O'Connor & Co., year 2000. UI row instead shows literal entities &lt;b&gt; / &amp; in the title and &amp; in the author. Saved special-characters-candidate.jpg. Candidate BUG-13: valid user text changes along the data path; verify API and fresh replay before filing. This UI-created record explains any rise in book count during the concurrent interrupted-write probe; its unique marker is different.
+
+- 15:26:10 — Interrupted-write probe completed: unique marker stayed absent during the partial upload and after client abort; completing the same JSON payload then returned 201 and created the marker. No partial-write defect observed. API confirmed the special-character record contained literal HTML entities, so next reset isolates a simple ampersand-only primary replay for candidate BUG-13.
+
+- 15:26:29 — BUG-13 primary fresh replay: S03 Salt & Pepper / O'Connor & Co. / 2000 accepted, but row shows S03 Salt &amp; Pepper and O'Connor &amp; Co. Saved bug-13.jpg. All fields are nonempty and year is valid; this is independent of missing-field/year validation.
+
+- 15:26:36 — Exact original title S03 Salt & Pepper returns no row, despite identical letter case. Saved encoded-title-search.jpg. This separates the encoding/data-change failure from BUG-07 case sensitivity.
+
+- 15:26:52 — Positive search control S03 Salt returns the encoded record. Saved encoded-title-control.jpg. Therefore the original ampersand-containing exact query fails because the stored/searchable text differs, not because no book was created.
+
+- 15:28:30 — BUG-13 separate fresh API replay: sent a JSON file containing literal ampersands; POST returned 201 and follow-up GET contains literal &amp; sequences in title and author. Full baseline/body/POST/GET transcript saved in bug-13-curl.txt. This demonstrates data alteration beyond the visual rendering step.
+
+- 15:29:06 — New test-design question for BUG-10: does every 300-character value overflow, or specifically text without break opportunities? Restarted to compare equally long strings containing spaces against the unbroken-string result.
+
+- 15:29:53 — Equal-length spaced-text control: title and author are each 300 characters with spaces; metrics {"documentWidth":1280,"tableWidth":860.0000610351562,"viewportWidth":1280}. Saved long-spaced-control.jpg and spaced-text-ui-metrics.json. This supports describing BUG-10 specifically as unbroken-text overflow.
+
+- 15:31:03 — API schema exploration: six bounded cases, each on a restarted three-book server. Tested null, empty array, string, number, null author, and null year. Full curl transcripts and schema-summary.json saved. Inspect results before deciding whether any are independent of BUG-02/03/04; do not inflate the bug count for validation variants.
+
+- 15:32:15 — Defect-investigation phase begins. Schema matrix produced a new availability candidate: null body reset the connection and subsequent GET could not connect. The batch collector failed to summarize that case after receiving no response, so schema-summary.json intentionally has only five successful collections. Array/string/number/null-author/null-year cases are validation variants of existing findings; do not count them as five new bugs. Isolate null crash and retain stderr before any restart.
+
+- 15:32:18 — BUG-14 isolated fresh replay: POST JSON null returns no HTTP response (curl connection-reset failure), following GET cannot connect, and recorded server PID is gone. Preserved complete curl stdout/stderr and server stderr before restarting. The server error is a TypeError accessing title on null. A crash is an availability failure, not another accepted-empty-row variant.
+
+- 15:33:36 — Recovery after null crash: restarted; original three records returned. Runtime stderr included an automatic source-line excerpt with the TypeError; app.js itself was not opened or inspected to search for defects. Next investigate count/max-year behavior at 3, 2, 1, and 0 valid records, without assuming a display contract for newest year when empty.
+
+- 15:33:57 — Count/max-year boundary: deleted seeded Clean Code; remaining table rows=["ГарчигЗохиолчОн","Тунгалаг ТамирЧ.Лодойдамба1,971Устгах","The Pragmatic ProgrammerD.Thomas & A.Hunt1,999Устгах"]; Нийт ном: 3 · Хамгийн шинэ он: 1999. The fixture is disposable and the server restart restores it.
+
+- 15:33:57 — Count/max-year boundary: deleted seeded The Pragmatic Programmer; remaining table rows=["ГарчигЗохиолчОн","Тунгалаг ТамирЧ.Лодойдамба1,971Устгах"]; Нийт ном: 2 · Хамгийн шинэ он: 1971. The fixture is disposable and the server restart restores it.
+
+- 15:33:57 — Count/max-year boundary: deleted seeded Тунгалаг Тамир; remaining table rows=["ГарчигЗохиолчОн"]; Нийт ном: 1 · Хамгийн шинэ он: 0. The fixture is disposable and the server restart restores it.
+
+- 15:34:11 — Empty-list API control confirms books=[] but stats.total=1 and newest=0. Saved empty-list-curl.txt and empty-list-count.jpg. This is another boundary manifestation of BUG-01, not a new count bug; no defect is asserted for the unspecified empty newest-year display.
+
+- 15:34:48 — Added S03 Empty List Recovery / Session Tester / 1000 from an empty list; one row, total 2, newest 1000. Saved empty-list-recovery.jpg. Reload retained the one record. This tests an empty-to-populated transition and distinguishes reload from restarting the in-memory server.
+
+- 15:35:44 — Reload-versus-restart control completed: reload retained the sole test book; restarting node app.js restored precisely ids 1/2/3 and removed the test record. Full API before/after saved. This supports the common reproduction precondition and avoids treating a page reload or a new clone alone as a fresh app state.
+
+- 15:47:35 — Investigation analysis checkpoint: classify array/string/number/null-field acceptance as variants of required-field/year validation; distinguish valid-JSON-null process termination (availability) from malformed-syntax success (error status). Reviewed the measured HTTP/UI evidence and the exact fresh-state reproduction sequence. No new bug reports or debrief were written during this analysis. Next visually review primary screenshots against the observed states.
+
+- 15:48:07 — Visual investigation review completed for primary screenshots: baseline, empty fields, year 2101, delete feedback, exact duplicate, lowercase search, long-text overflow, failed old link, add-label typo, and ampersand data change. Images show the recorded states; BUG-05 includes all three original books. API-only findings retain textual evidence. This review concerns observed application behavior, not post-session report authoring.
+
+- 15:50:01 — Environment trace saved: node -v, curl.exe --version, observed browser User-Agent and OS build. This preserves the actual assisted-test environment separately from the original Opera reproductions. Primary screenshots were visually compared to observed states; no report files have been rewritten yet.
+
+- 15:50:33 — Source-integrity control: re-extracted app.js from the user's teacher-provided app.rar to a separate reference folder and compared SHA256. Tested file is byte-identical; neither source was opened for defect hunting. Saved source-integrity.txt. Thus observed bugs belong to the supplied app rather than a modified fixture.
+
+- 15:52:06 — Late-session UI health check after the earlier restart: form/search empty; exactly three original rows; total 4; no test-created records. Saved late-clean-baseline.jpg. Source-integrity check passed against the original archive, so the observed count/format/color defects persist on the unmodified teacher fixture.
+
+- 15:53:43 — Investigation closure: unresolved coverage includes full accessibility/assistive technology, cross-browser comparison, sustained bulk concurrency, and broader security cases. Only the short Tab path and one slow/incomplete client were tested; do not generalize these into full accessibility/load/security claims. Prepared a scoped reset helper outside the repository for the later fresh-clone replay; teacher app.js remains unchanged.
+
+- 15:54:27 — Additional server-side confirmations on separate fresh processes: POST year 2101 returned 201 and stored that out-of-range year (BUG-03); POST exact seeded Clean Code pair returned 201 and stored a duplicate (BUG-06). Full curl baseline/body/POST/GET files saved. These corroborate existing UI findings rather than adding new bug IDs.
+
+- 16:07:30 — Final cleanup restart removed the duplicate created by the late API confirmation. Exactly the three original records remain. Closing observations will use a fresh browser reload and final GET; no test-created records will be left at timebox end.
+
+- 16:09:44 — Closing record: the predeclared observation window was 14:59:08–15:59:08 (60 minutes). This closing entry and the cleanup at 16:07:30 were recorded after that cutoff and are excluded from the 60-minute accounting. The previous cleanup note's future-tense reference to timebox end was late; retain this correction rather than changing its timestamp. No report/debrief files were authored inside the 60-minute window. Post-window cleanup confirmed the original three records. Formal report authoring begins now.
+```
+
+## Саадууд issues
+
+- JSON `null` хүсэлт server process-ийг зогсоосон; curl холболтын алдаа, PID-ийн төлөв, runtime stderr-ээр баталгаажуулаад тусдаа BUG-14 болгон бүртгэсэн бөгөөд server-ийг дахин асааж тестийг үргэлжлүүлсэн.
+- Анхны schema collector нь хариугүй болсон null кейсийг summary-д оруулж чадаагүй; таван амжилттай цуглуулсан кейсийн summary болон null-ийн тусгаарласан бүтэн нотолгоог тусад нь хадгалсан.
+- Runtime TypeError-ийн stderr автоматаар source-line excerpt харуулсан; app.js файлыг согог хайхын тулд нээж уншаагүй, илэрсэн гэмтлийг UI/API зан төлөвөөр баталсан.
+- Хаалтын бүртгэл, эцсийн цэвэрлэгээг урьдчилан тогтоосон timebox-ийн дараа хийсэн; эдгээрийг 60 минут гэж нөхөж тооцоогүй, бодит цагийг түүхий тэмдэглэлд хадгалсан.
+
+## Цагийн задаргаа
+
+Урьдчилан тогтоосон 60 минутын цонхны үндсэн анхаарлын үе шатыг секундын нарийвчлалтай тэмдэглэлээр ангилав; арын API хяналтыг давхар тооцоогүй. Сүүлд хийсэн cleanup, тайлан бичих, шинэ clone-ийн replay нь энэ хүснэгтэд ороогүй.
+
+| Үйл ажиллагаа | Цагийн интервал UTC+08 | Хугацаа | Хувь |
+| --- | --- | --- | ---: |
+| Setup | 14:59:08–15:00:01 | 53 секунд | 1.47% |
+| Тест дизайн ба гүйцэтгэл | 15:00:01–15:32:15 | 32 минут 14 секунд | 53.72% |
+| Согог судлах | 15:32:15–15:59:08 | 26 минут 53 секунд | 44.81% |
+| Нийт | 14:59:08–15:59:08 | 60 минут | 100.00% |
+
+## Нотолгоо ба хамрах хүрээ
+
+[Session 03 screenshot-ууд](screenshots/session-03/) болон [HTTP, өгөгдөл, хэмжилтийн нотолгоо](evidence/session-03/) нь тухайн үеийн бодит төлөвөөс хадгалагдсан. Багшийн app.rar-аас дахин задласан app.js болон тестэлсэн app.js-ийн SHA256 ижил болохыг [source-integrity.txt](evidence/session-03/source-integrity.txt) батална.
+
+Тусгай тэмдэгт, null JSON, хоосон жагсаалт, удаан/тасарсан клиент болон keyboard-ийн богино замыг нэмэлтээр судалсан. Нэг удаан клиент хэвийн API хариуг хаагаагүй; дутуу valid upload-ийг таслахад partial record үүсээгүй. Эдгээр хяналтыг бүх concurrency/security/accessibility нөхцөлийг хамарсан тест гэж үзээгүй.
+
+## Өмнөх ажлын ялгалт
+
+2026-10-15-ны анхны charter/report [архивт](sessions/2026-10-15/) байна. Түүний session дотор report бичсэн болон screenshot-ийг дараа авсан хязгаарлалтыг түүхээс арилгаагүй. 2026-10-20-ны [нэмэлт session](sessions/2026-10-20/raw-notes.md) тасарсан тул 60 минутын гүйцэтгэлд тооцоогүй. Одоогийн үндсэн нотолгоо нь 2026-10-21-ний Session 03 юм.

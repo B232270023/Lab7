@@ -1,0 +1,10 @@
+Captured at 2026-10-21T15:50:01.5748004+08:00
+node -v:
+v24.13.0
+curl.exe --version:
+curl 8.21.0 (Windows) libcurl/8.21.0 Schannel zlib/1.3.2 WinIDN WinLDAP
+Release-Date: 2026-06-24
+Protocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt mqtts pop3 pop3s smtp smtps telnet tftp ws wss
+Features: alt-svc AsynchDNS HSTS HTTPS-proxy IDN IPv6 Kerberos Largefile libz SPNEGO SSL SSPI threadsafe Unicode UnixSockets
+Browser: Codex In-app Browser; observed HTTP User-Agent version Chrome/155.0.0.0 (see browser-user-agent.jpg).
+OS: Windows x64, registry DisplayVersion 25H2, CurrentBuild 26200, UBR 9711.

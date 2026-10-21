@@ -1,0 +1,54 @@
+[
+  {
+    "lastRecord": {
+      "id": 4,
+      "title": "",
+      "author": ""
+    },
+    "name": "array-body",
+    "response": "HTTP/1.1 201 Created",
+    "books": 4
+  },
+  {
+    "lastRecord": {
+      "id": 4,
+      "title": "",
+      "author": ""
+    },
+    "name": "string-body",
+    "response": "HTTP/1.1 201 Created",
+    "books": 4
+  },
+  {
+    "lastRecord": {
+      "id": 4,
+      "title": "",
+      "author": ""
+    },
+    "name": "number-body",
+    "response": "HTTP/1.1 201 Created",
+    "books": 4
+  },
+  {
+    "lastRecord": {
+      "id": 4,
+      "title": "S03 Null Author",
+      "author": "",
+      "year": 2000
+    },
+    "name": "null-author",
+    "response": "HTTP/1.1 201 Created",
+    "books": 4
+  },
+  {
+    "lastRecord": {
+      "id": 4,
+      "title": "S03 Null Year",
+      "author": "Session Tester",
+      "year": null
+    },
+    "name": "null-year",
+    "response": "HTTP/1.1 201 Created",
+    "books": 4
+  }
+]

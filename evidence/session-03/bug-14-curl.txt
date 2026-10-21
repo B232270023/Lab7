@@ -1,0 +1,17 @@
+Fresh-server baseline GET /api/books:
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Wed, 21 Oct 2026 07:32:16 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+[{"id":1,"title":"Тунгалаг Тамир","author":"Ч.Лодойдамба","year":1971},{"id":2,"title":"Clean Code","author":"Robert C. Martin","year":2008},{"id":3,"title":"The Pragmatic Programmer","author":"D.Thomas & A.Hunt","year":1999}]
+Body file null.json contains exactly four UTF-8 bytes: null
+Command: curl.exe --noproxy "*" -sS -i --max-time 5 -H "Content-Type: application/json" --data-binary "@null.json" http://localhost:3000/api/books
+curl: (56) Recv failure: Connection was reset
+POST curl exit code: 56; no HTTP response received.
+Follow-up GET /api/books after POST:
+curl: (7) Failed to connect to localhost:3000 after 2262 ms: Could not connect to server
+Follow-up curl exit code: 7
+Server PID still alive: False

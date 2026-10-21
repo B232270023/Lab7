@@ -1,0 +1,26 @@
+2026-10-21T07:11:54.089Z Opened ONE deliberately incomplete local POST. Advertised Content-Length 100; sent only 8 bytes. Observe whether server times out and whether GET stays responsive.
+2026-10-21T07:11:54.094Z Control GET status=200; latency=8ms; body={"total":4,"newest":2008}
+2026-10-21T07:12:09.093Z Control GET status=200; latency=2ms; body={"total":4,"newest":2008}
+2026-10-21T07:12:24.107Z Control GET status=200; latency=3ms; body={"total":4,"newest":2008}
+2026-10-21T07:12:39.116Z Control GET status=200; latency=2ms; body={"total":4,"newest":2008}
+2026-10-21T07:12:54.130Z Control GET status=200; latency=2ms; body={"total":5,"newest":2008}
+2026-10-21T07:13:09.137Z Control GET status=200; latency=2ms; body={"total":4,"newest":2008}
+2026-10-21T07:13:24.149Z Control GET status=200; latency=3ms; body={"total":5,"newest":2008}
+2026-10-21T07:13:39.162Z Control GET status=200; latency=1ms; body={"total":5,"newest":2008}
+2026-10-21T07:13:54.171Z Control GET status=200; latency=2ms; body={"total":5,"newest":2008}
+2026-10-21T07:14:09.179Z Control GET status=200; latency=3ms; body={"total":5,"newest":2008}
+2026-10-21T07:14:24.187Z Control GET status=200; latency=2ms; body={"total":5,"newest":2008}
+2026-10-21T07:14:39.196Z Control GET status=200; latency=2ms; body={"total":5,"newest":2008}
+2026-10-21T07:14:54.199Z Control GET status=200; latency=2ms; body={"total":5,"newest":2026}
+2026-10-21T07:15:09.202Z Control GET status=200; latency=2ms; body={"total":5,"newest":2026}
+2026-10-21T07:15:24.206Z Control GET status=200; latency=1ms; body={"total":5,"newest":2026}
+2026-10-21T07:15:39.216Z Control GET status=200; latency=1ms; body={"total":5,"newest":2026}
+2026-10-21T07:15:54.229Z Control GET status=200; latency=1ms; body={"total":5,"newest":2026}
+2026-10-21T07:16:09.231Z Control GET status=200; latency=1ms; body={"total":4,"newest":2008}
+2026-10-21T07:16:24.245Z Control GET status=200; latency=2ms; body={"total":4,"newest":2008}
+2026-10-21T07:16:39.246Z Control GET status=200; latency=1ms; body={"total":4,"newest":2008}
+2026-10-21T07:16:54.251Z Control GET status=200; latency=2ms; body={"total":4,"newest":2008}
+2026-10-21T07:17:09.260Z Control GET status=200; latency=2ms; body={"total":4,"newest":2008}
+2026-10-21T07:17:23.864Z Slow request response: "HTTP/1.1 408 Request Timeout\r\nConnection: close\r\n\r\n"
+2026-10-21T07:17:23.866Z Slow request connection closed at elapsed 329.8 seconds.
+2026-10-21T07:17:23.867Z Observation completed. No pass/fail assumption is made about a timeout duration absent from the lab specification.

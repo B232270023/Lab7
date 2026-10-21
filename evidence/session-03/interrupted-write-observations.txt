@@ -1,0 +1,15 @@
+2026-10-21T07:23:21.748Z Question: can an interrupted valid-book upload create a partial record? ONE local socket, 120-second observation, then abort without completing the body.
+2026-10-21T07:23:21.760Z Before: {"status":200,"body":"[{\"id\":1,\"title\":\"Тунгалаг Тамир\",\"author\":\"Ч.Лодойдамба\",\"year\":1971},{\"id\":2,\"title\":\"Clean Code\",\"author\":\"Robert C. Martin\",\"year\":2008},{\"id\":3,\"title\":\"The Pragmatic Programmer\",\"author\":\"D.Thomas & A.Hunt\",\"year\":1999}]"}
+2026-10-21T07:23:36.775Z Control 1: status=200; books=3; partialMarkerExists=false
+2026-10-21T07:23:51.785Z Control 2: status=200; books=3; partialMarkerExists=false
+2026-10-21T07:24:06.789Z Control 3: status=200; books=3; partialMarkerExists=false
+2026-10-21T07:24:21.798Z Control 4: status=200; books=3; partialMarkerExists=false
+2026-10-21T07:24:36.812Z Control 5: status=200; books=3; partialMarkerExists=false
+2026-10-21T07:24:51.823Z Control 6: status=200; books=3; partialMarkerExists=false
+2026-10-21T07:25:06.831Z Control 7: status=200; books=4; partialMarkerExists=false
+2026-10-21T07:25:21.835Z Control 8: status=200; books=4; partialMarkerExists=false
+2026-10-21T07:25:21.836Z Client aborted after 120 seconds with incomplete body.
+2026-10-21T07:25:22.844Z After abort: {"status":200,"body":"[{\"id\":1,\"title\":\"Тунгалаг Тамир\",\"author\":\"Ч.Лодойдамба\",\"year\":1971},{\"id\":2,\"title\":\"Clean Code\",\"author\":\"Robert C. Martin\",\"year\":2008},{\"id\":3,\"title\":\"The Pragmatic Programmer\",\"author\":\"D.Thomas & A.Hunt\",\"year\":1999},{\"id\":4,\"title\":\"S03 &lt;b&gt;Literal&lt;/b&gt; &amp; \\\"quotes\\\"\",\"author\":\"O'Connor &amp; Co.\",\"year\":\"2000\"}]"}
+2026-10-21T07:25:22.846Z Completed-payload positive control: {"status":201,"body":"{\"result\":\"OK\",\"id\":5}"}
+2026-10-21T07:25:22.847Z After complete: {"status":200,"body":"[{\"id\":1,\"title\":\"Тунгалаг Тамир\",\"author\":\"Ч.Лодойдамба\",\"year\":1971},{\"id\":2,\"title\":\"Clean Code\",\"author\":\"Robert C. Martin\",\"year\":2008},{\"id\":3,\"title\":\"The Pragmatic Programmer\",\"author\":\"D.Thomas & A.Hunt\",\"year\":1999},{\"id\":4,\"title\":\"S03 &lt;b&gt;Literal&lt;/b&gt; &amp; \\\"quotes\\\"\",\"author\":\"O'Connor &amp; Co.\",\"year\":\"2000\"},{\"id\":5,\"title\":\"S03 Interrupted Write\",\"author\":\"Session Tester\",\"year\":2026}]"}
+2026-10-21T07:25:22.847Z Finished; leave any completed positive-control record for the operator to inspect and reset.

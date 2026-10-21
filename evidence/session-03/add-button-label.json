@@ -1,0 +1,26 @@
+{
+  "label": "Нэмэx",
+  "expected": "Нэмэх",
+  "actualCodePoints": [
+    {
+      "character": "Н",
+      "codePoint": "U+041D"
+    },
+    {
+      "character": "э",
+      "codePoint": "U+044D"
+    },
+    {
+      "character": "м",
+      "codePoint": "U+043C"
+    },
+    {
+      "character": "э",
+      "codePoint": "U+044D"
+    },
+    {
+      "character": "x",
+      "codePoint": "U+0078"
+    }
+  ]
+}
