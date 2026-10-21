@@ -23,3 +23,7 @@
 Нэмэлт raw файлууд нь year, empty list, special characters, slow/incomplete client, schema төрөл, reload/reset зэрэг судалгааны ажиглалт. schema-null-body-curl.txt нь анхны collector хариугүй кейсийг бүрэн цуглуулж чадаагүй оролдлого; түүнийг үндсэн нотолгоо гэж ашиглаагүй, бүрэн давталт нь bug-14-curl.txt юм. schema-summary.json дахь таван кейсийг таван шинэ согог гэж тоолоогүй.
 
 [Session 02](session-02/) тасарсан ажлын нэмэлт нотолгоо. Энэ хавтасны хуучин bug-01/02/04-curl.txt нь 2026-10-15-ны материал; fresh-clone-bug-01-counts.txt дахь 19 номтой төлөв нь шинэ server-ийн гурван seeded record-ийн баталгаа биш. Одоогийн report-ууд эдгээр хуучин файлыг үндсэн replay гэж ишлээгүй.
+
+## Шинэ clone-ийн эцсийн давталт
+
+[final-clone/](final-clone/) нь b26e6ba-г шинэ хавтаст clone хийж, bug бүрийг шинэ server дээр дагасан post-session QA-ийн үр дүн. API/UI summary болон validation-summary.json нь 14/14 тайлагнасан зан төлөв дахин гарсныг бүртгэсэн.

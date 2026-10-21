@@ -1,0 +1,98 @@
+[
+  {
+    "ids": [
+      "01",
+      "08",
+      "09",
+      "12"
+    ],
+    "observedAt": "16:57:29",
+    "rows": 3,
+    "summary": "Нийт ном: 4 · Хамгийн шинэ он: 2008",
+    "year2008Displayed": true,
+    "deleteColors": [
+      "rgb(44, 122, 75)",
+      "rgb(44, 122, 75)",
+      "rgb(44, 122, 75)"
+    ],
+    "lastLabelCodePoint": 120,
+    "reportReproduced": true
+  },
+  {
+    "id": "05",
+    "observedAt": "17:00:34",
+    "statusBeforeDeleteMatches": 0,
+    "statusAfterDeleteMatches": 1,
+    "remainingRows": 3,
+    "reportReproduced": true
+  },
+  {
+    "id": "07",
+    "observedAt": "17:02:33",
+    "observations": [
+      {
+        "query": "clean",
+        "dataRows": 0
+      },
+      {
+        "query": "Clean Code",
+        "dataRows": 1
+      },
+      {
+        "query": "robert",
+        "dataRows": 0
+      },
+      {
+        "query": "Robert",
+        "dataRows": 1
+      }
+    ],
+    "reportReproduced": true
+  },
+  {
+    "id": "02",
+    "observedAt": "17:02:56",
+    "afterAddRows": 4,
+    "afterReloadRows": 4,
+    "reportReproduced": true
+  },
+  {
+    "id": "03",
+    "observedAt": "17:04:01",
+    "row": "S03 Year 2101\tSession Tester\t2,101\tУстгах",
+    "reportReproduced": true
+  },
+  {
+    "id": "06",
+    "observedAt": "17:04:28",
+    "exactDuplicates": 2,
+    "afterDifferentYear": 3,
+    "reportReproduced": true
+  },
+  {
+    "id": "10",
+    "observedAt": "17:04:49",
+    "metrics": {
+      "documentWidth": 6255,
+      "tableWidth": 6045.00048828125,
+      "viewportWidth": 1280
+    },
+    "reportReproduced": true
+  },
+  {
+    "id": "13",
+    "observedAt": "17:05:12",
+    "row": "S03 Salt &amp; Pepper\tO'Connor &amp; Co.\t2,000\tУстгах",
+    "exactAndPartialRows": [
+      0,
+      1
+    ],
+    "reportReproduced": true
+  },
+  {
+    "id": "11",
+    "observedAt": "17:05:37",
+    "body": "Internal Server Error",
+    "reportReproduced": true
+  }
+]

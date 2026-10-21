@@ -1,0 +1,65 @@
+{
+  "checkedAtUtc": "2026-10-21T09:21:03.891Z",
+  "results": [
+    {
+      "file": "screenshots/session-03/baseline.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/baseline.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-02.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-02.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-03.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-03.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-05.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-05.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-06.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-06.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-07.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-07.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-10.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-10.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-11.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-11.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-12.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-12.jpg",
+      "status": 200,
+      "error": null
+    },
+    {
+      "file": "screenshots/session-03/bug-13.jpg",
+      "url": "https://github.com/B232270023/Lab7/raw/main/screenshots/session-03/bug-13.jpg",
+      "status": 200,
+      "error": null
+    }
+  ]
+}

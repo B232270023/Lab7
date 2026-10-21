@@ -1,0 +1,74 @@
+[
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:46.4774098+08:00",
+    "observed": "HTTP/1.1 200 OK",
+    "followUpExit": 0,
+    "baselineBooks": 3,
+    "requestExit": 0,
+    "id": "01"
+  },
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:46.8200291+08:00",
+    "observed": "HTTP/1.1 201 Created",
+    "followUpExit": 0,
+    "baselineBooks": 3,
+    "requestExit": 0,
+    "id": "02"
+  },
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:47.1412319+08:00",
+    "observed": "HTTP/1.1 201 Created",
+    "followUpExit": 0,
+    "baselineBooks": 3,
+    "requestExit": 0,
+    "id": "03"
+  },
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:47.4434584+08:00",
+    "observed": "HTTP/1.1 200 OK",
+    "followUpExit": 0,
+    "baselineBooks": 3,
+    "requestExit": 0,
+    "id": "04"
+  },
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:47.7694232+08:00",
+    "observed": "HTTP/1.1 201 Created",
+    "followUpExit": 0,
+    "baselineBooks": 3,
+    "requestExit": 0,
+    "id": "06"
+  },
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:48.0842041+08:00",
+    "observed": "HTTP/1.1 500 Internal Server Error",
+    "followUpExit": 0,
+    "baselineBooks": 3,
+    "requestExit": 0,
+    "id": "11"
+  },
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:48.4322084+08:00",
+    "observed": "HTTP/1.1 201 Created",
+    "followUpExit": 0,
+    "baselineBooks": 3,
+    "requestExit": 0,
+    "id": "13"
+  },
+  {
+    "reportReproduced": true,
+    "time": "2026-10-21T17:01:51.0374107+08:00",
+    "observed": "curl: (56) Recv failure: Connection was reset",
+    "followUpExit": 7,
+    "baselineBooks": 3,
+    "requestExit": 56,
+    "id": "14"
+  }
+]

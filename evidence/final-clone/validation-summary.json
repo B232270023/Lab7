@@ -1,0 +1,91 @@
+{
+  "checkedAtUtc": "2026-10-21T09:18:38.778Z",
+  "checkedCommit": "b26e6baeab061b2f188a8ef8c731864a6ac34a57",
+  "freshCloneCommit": "b26e6baeab061b2f188a8ef8c731864a6ac34a57",
+  "freshCloneClean": true,
+  "appSha256": "A2158DC202E62A18F11ADCC0FECA1D84FB6C6A9EC269B8EB63BC72F10EB27C6C",
+  "public": true,
+  "defaultBranch": "main",
+  "commitsAtCheck": 22,
+  "charterCommit": "9569ae40586c1aea179317c1ca388804d5c40b8a 2026-10-21T14:58:03+08:00",
+  "sessionReportCommit": "ecfa96380c8cdc7e9e93d326c7992446115cf365 2026-10-21T16:09:49+08:00",
+  "bugReportsCommit": "b26e6baeab061b2f188a8ef8c731864a6ac34a57 2026-10-21T16:56:22+08:00",
+  "results": [
+    {
+      "id": "01",
+      "api": true,
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "02",
+      "api": true,
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "03",
+      "api": true,
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "04",
+      "api": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "05",
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "06",
+      "api": true,
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "07",
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "08",
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "09",
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "10",
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "11",
+      "api": true,
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "12",
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "13",
+      "api": true,
+      "ui": true,
+      "reportReproduced": true
+    },
+    {
+      "id": "14",
+      "api": true,
+      "reportReproduced": true
+    }
+  ]
+}
