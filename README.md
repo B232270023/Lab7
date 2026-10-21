@@ -1,28 +1,67 @@
-Student name: О.Шинэбаяр  
-Student code: B232270023  
-Node.js: v24.14.1  
-Browser used for UI reproductions and screenshots: Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit
-Additional browser used during assisted exploration: Codex In-app Browser; version unavailable
+Оюутны нэр: О.Шинэбаяр
 
-# Lab 07 — Exploratory testing (SBTM)
+Оюутны код: B232270023
 
-Black-box exploratory testing of the Reading List v2.0 app. The session charter and chronological notes are in [charter.md](charter.md) and [session-report.md](session-report.md). Confirmed findings and evidence are listed in [bugs/](bugs/) and [evidence/](evidence/).
+node -v: v24.13.0
 
-## Confirmed findings
+Браузер: Codex In-app Browser, ажигласан User-Agent Chrome/155.0.0.0
 
-| ID | Finding | Severity |
-| --- | --- | --- |
-| [BUG-01](bugs/bug-01.md) | Total count differs from the displayed book rows | Minor |
-| [BUG-02](bugs/bug-02.md) | Empty/missing fields and whitespace-only title/author are accepted | Major |
-| [BUG-03](bugs/bug-03.md) | Year range and integer rules are not enforced | Major |
-| [BUG-04](bugs/bug-04.md) | Malformed JSON receives a success response | Major |
-| [BUG-05](bugs/bug-05.md) | Delete leaves the “book added” status message | Minor |
-| [BUG-06](bugs/bug-06.md) | Duplicate title and author pairs are accepted | Major |
-| [BUG-07](bugs/bug-07.md) | Search is case-sensitive for title and author | Minor |
-| [BUG-08](bugs/bug-08.md) | Years are displayed with thousands separators | Cosmetic |
-| [BUG-09](bugs/bug-09.md) | Delete buttons are green instead of red | Cosmetic |
-| [BUG-10](bugs/bug-10.md) | Long unbroken text expands the table beyond the viewport | Minor |
+Үйлдлийн систем: Windows x64, 25H2, build 26200.9711
+
+Нэмэлт session-ийн огноо: 2026-10-21
+
+Гүйцэтгэгчийн ил тод байдал: Codex-ийн AI-assisted шалгалт, оюутны хүсэлтээр; оюутан бүх шинэ үйлдлийг өөрөө хийсэн гэж тайлагнаагүй.
+
+# Lab07 Exploratory тест SBTM
+
+Багшийн Уншлагын жагсаалт v2.0 аппыг өөрчлөхгүйгээр хар хайрцгийн аргаар шинжилж, 14 ажиглагдсан согогийг баримтжуулав. Шаардлагатай үндсэн материал нь [charter.md](charter.md), [session-report.md](session-report.md), [bugs/](bugs/), [evidence/](evidence/) болон [screenshots/](screenshots/) дотор байна. Энэ репо нь тестийн тайлан; зориудаар суулгасан аппын согогуудыг засаж далдлаагүй.
+
+## Session ба түүх
+
+- Үндсэн шинэ цонх: 2026-10-21 14:59:08–15:59:08 UTC+08, 60 минут; дараах хожуу cleanup, хаалт, report бичилтийг хугацаанд оруулаагүй.
+- Charter `9569ae4` нь 14:58:03-д commit хийгдэж push амжилттай дууссаны дараа session эхэлсэн.
+- Session report ба тухайн үед хадгалсан нотолгоо `ecfa963` commit-д орсон; bug report ба debrief-ийг түүнээс хойш боловсруулсан.
+- [2026-10-15-ны архив](sessions/2026-10-15/) болон [2026-10-20-ны тасарсан нэмэлт ажиглалт](sessions/2026-10-20/) нь түүхэн материал; тасарсан/шөнийн хугацааг шинэ 60 минут гэж тооцоогүй.
+- Эзэмшигч Teams-д өмнө нь Turn in хийснээ чатад баталсан; энэ засвараар Teams-д нэмэлт үйлдэл хийгээгүй.
+
+## Аппыг ажиллуулах ба цэвэр төлөв
+
+```bash
+git clone https://github.com/B232270023/Lab7.git
+cd Lab7
+```
+
+Багшийн MS Teams Class Materials → Labs → Lab07 эсвэл Assignment-аас өгсөн app.js-ийг (энэ шалгалтад хэрэглэсэн app.rar-аас задлан) clone-ийн үндсэн хавтаст хуулна. app.js нь багшийн эх файл тул репод оруулаагүй, .gitignore-д орсон; зааврын DOCX-ийг мөн репод оруулаагүй. Нэмэлт npm сан суулгах шаардлагагүй.
+
+```bash
+node app.js
+```
+
+Браузераар http://localhost:3000/ нээнэ. Bug бүрийн өмнө server terminal-д Ctrl+C, дараа нь node app.js, эцэст нь page reload хийнэ. /api/books нь id 1,2,3 бүхий Тунгалаг Тамир, Clean Code, The Pragmatic Programmer гэсэн яг гурван номтой байгааг шалгана; буруу тоолуурын 4 гэсэн утгыг цэвэр төлөвийн шалгуур болгож болохгүй. Page reload эсвэл шинэ clone дангаараа ажиллаж байгаа server-ийн санах ойг цэвэрлэхгүй.
+
+PowerShell-ийн curl alias-аас зайлсхийж curl.exe хэрэглэнэ; Linux/macOS-д curl гэж бичнэ. Бүх API report нь JSON/body файлын арга, бодит HTTP статус эсвэл холболтын алдааны нотолгоотой. [Орчны бодит гаралт](evidence/session-03/environment.txt) болон [teacher app-ийн byte integrity](evidence/session-03/source-integrity.txt) хадгалагдсан.
+
+## Батлагдсан олдворууд
+
+| ID | Ажиглагдсан согог | Ноцтой байдал | Олдсон аялал |
+| --- | --- | --- | --- |
+| [BUG-01](bugs/bug-01.md) | Нийт номын тоолуур бодит номын тооноос нэгээр их | Minor | Fed-Ex |
+| [BUG-02](bugs/bug-02.md) | Хоосон эсвэл дутуу талбартай номыг амжилттай нэмдэг | Major | Couch Potato, Saboteur |
+| [BUG-03](bugs/bug-03.md) | Он 1000–2100 хоорондох бүхэл тоо байх дүрмийг зөрчсөн утгыг хадгалдаг | Major | Fed-Ex |
+| [BUG-04](bugs/bug-04.md) | Синтакс буруу JSON-д HTTP 400 өгөхийн оронд HTTP 200 OK буцаадаг | Major | Saboteur |
+| [BUG-05](bugs/bug-05.md) | Ном устгасны дараа Ном нэмэгдлээ гэсэн буруу мессеж харуулдаг | Minor | Fed-Ex |
+| [BUG-06](bugs/bug-06.md) | Ижил гарчиг зохиолчтой номын давхардлыг хориглодоггүй | Major | Fed-Ex |
+| [BUG-07](bugs/bug-07.md) | Гарчиг зохиолчийн хайлт том жижиг үсэг ялгадаг | Minor | Fed-Ex |
+| [BUG-08](bugs/bug-08.md) | Хүчинтэй оныг энгийн тооны оронд мянгатын таслалтай харуулдаг | Cosmetic | Supermodel |
+| [BUG-09](bugs/bug-09.md) | Устгах үйлдлийн товч улаан бус ногоон байна | Cosmetic | Supermodel |
+| [BUG-10](bugs/bug-10.md) | 300 тэмдэгттэй тасралтгүй текст хүснэгтийг дэлгэцээс хэт өргөн болгодог | Minor | Supermodel |
+| [BUG-11](bugs/bug-11.md) | Хуучин хувилбар холбоос HTTP 500 бүхий алдааны хуудас нээдэг | Minor | Supermodel |
+| [BUG-12](bugs/bug-12.md) | Нэмэх товчны сүүлчийн үсэг кирилл х-ийн оронд латин x байна | Cosmetic | Supermodel |
+| [BUG-13](bugs/bug-13.md) | Ampersand-тэй title author өөрчлөгдөн хадгалагдаж яг ижил хайлт бүтэлгүйтдэг | Minor | Fed-Ex |
+| [BUG-14](bugs/bug-14.md) | JSON null POST нь Node server process-ийг унагаж бүх API-г зогсоодог | Critical | Saboteur |
+
+UI согог бүр report дотроо GitHub дээр харагдах зурагтай. API-only BUG-04 ба BUG-14 нь текст нотолгоотой; BUG-14-д server хариу өгөхөөсөө өмнө уналаа гэдгийг HTTP 500 гэж зохиож тайлбарлаагүй. Нэг шалтгааны хоосон талбар/оны хувилбаруудыг тус тусын нэг тайланд нэгтгэсэн.
 
 ## Debrief
 
-Supermodel and Fed-Ex were most effective for normal add, search, list, delete, and count flows; they exposed the count mismatch (BUG-01), stale delete feedback (BUG-05), duplicate records (BUG-06), and case-sensitive search (BUG-07). Couch Potato found missing or whitespace-only fields (BUG-02), invalid year values (BUG-03), year formatting (BUG-08), and long-text overflow (BUG-10). Saboteur confirmed malformed JSON receives HTTP 200 (BUG-04), and its missing-fields request also supports BUG-02; full `curl -i` transcripts are saved in `evidence/`. Supermodel's visual review also found the green delete buttons (BUG-09). No separate confirmed out-of-charter defect was filed; the old-version link opened a blank tab, but direct navigation was blocked, so its destination remains unverified. A follow-up charter should focus on page and link navigation, keyboard/accessibility behavior, and concurrent requests, which were not covered. The post-session fresh-clone replay is documented in [session-report.md](session-report.md). Lab 1 Playwright checks could automate the count, validation, duplicate, search, delete-feedback, and malformed-JSON findings. Playwright could also assert button color and table overflow through CSS and layout checks, although visual inspection made those presentation defects easy to notice. The original session app was restored to its three seeded records with the form and search cleared at session end; the separate post-session clone was used for replay. The nine original UI screenshots were captured in Opera One 136.0.6008.80 (Chromium 152.0.7977.134), Windows 11 64-bit; the assisted exploration also used Codex In-app Browser (version unavailable).
+Fed-Ex хамгийн үр дүнтэй байж тоолуур, оны дүрэм, устгалын мессеж, давхардал, хайлт, ampersand өгөгдлийн өөрчлөлт гэсэн BUG-01, BUG-03, BUG-05, BUG-06, BUG-07, BUG-13-ыг илрүүлсэн. Supermodel нь оны формат, товчны өнгө, тасралтгүй текстийн халилт, харагдах холбоосын алдаа, товчны үсгийн алдаа гэсэн BUG-08, BUG-09, BUG-10, BUG-11, BUG-12-ыг баримтжуулсан. Couch Potato шаардлагатай талбарын BUG-02-ыг, Saboteur буруу JSON-ийн BUG-04 болон server унагах BUG-14-ийг илрүүлж BUG-02-ын API хувилбарыг давхар баталсан. Өргөн charter-ийн хүрээнээс гарсан тусдаа согог бүртгээгүй боловч урьдчилан яг нэрлээгүй ampersand болон null JSON оролтын үр дүн дараагийн алхмуудыг чиглүүлсэн. Дараагийн charter нь өөр браузер, бүрэн accessibility, их ачааллын зэрэгцээ ажиллагаа, өргөн security кейсүүдэд төвлөрөх ба энэ session-ийн богино Tab зам, нэг удаан клиентээр тэдгээрийг бүрэн шалгасан гэж дүгнэхгүй. Тоолуур, mandatory field, он, duplicate, search, delete feedback, API статус, холбоос, өгөгдлийн ижил утгыг Playwright болон API assertion-оор автоматжуулж болно. Оны харагдах формат, өнгө, overflow, Unicode үсгийн алдааг хүн зураг болон текстээр амархан анзаарсан ч CSS хэмжилт, text/code-point assertion-аар мөн барьж болно. Иймээс эдгээрээс заавал зөвхөн хүний нүдээр олдох ёстой гэж хязгаарлагдсан согог байхгүй бөгөөд хүний ажиглалт нь ямар assertion хэрэгтэйг олоход чухал байсан. Lab1-ийн бодит тестийн код энэ репод байгаагүй тул түүний одоогийн suite нэмэлт assertion-гүйгээр аль согогийг яг барихыг ажиллуулж баталсан гэж тайлагнаагүй.

@@ -1,3 +1,7 @@
-Nine tester-supplied screenshots from the original session are saved here for the UI findings: BUG-01, BUG-02, BUG-03, BUG-05, BUG-06, BUG-07, BUG-08, BUG-09, and BUG-10. They are embedded in their matching bug reports. The initial-state screenshot is reused for BUG-01, BUG-08, and BUG-09 because it visibly shows all three issues. BUG-04 is API-only; its original evidence is the complete `curl -i` transcript in `evidence/bug-04-curl.txt`.
+# Screenshot-ийн эх сурвалж
 
-The tester later replayed all ten findings against a fresh clone using Opera One 136.0.6008.80. Selected screenshots from that run are copied to [`replay/`](replay/) and indexed in the post-session section of `session-report.md`. The replay also includes API captures for BUG-01 and BUG-04.
+- [session-03/](session-03/) — 2026-10-21-ний үндсэн AI-assisted session-ийн тухайн үед шууд хадгалсан JPG зургууд; одоогийн bug report-ууд эдгээрийг хэрэглэнэ.
+- [session-02/](session-02/) — 2026-10-20-ны тасарсан нэмэлт ажиглалтын зургууд; бүтэн 60 минутын session гэж тооцоогүй.
+- Энэ хавтасны хуучин bug-NN.png болон [replay/](replay/) зургууд нь 2026-10-15-нд session-ийн дараа эзэмшигчээс өгсөн Opera reproduction материал юм; session дотор авсан анхны нотолгоо гэж нэрлээгүй.
+- baseline.jpg нь гурван өөр шаардлага (тоолуур, оны формат, устгах өнгө)-ыг нэг дор харуулдаг тул BUG-01, BUG-08, BUG-09-д хуваалцан ашигласан.
+- BUG-04 ба BUG-14 нь API-only тул үндсэн нотолгоо нь evidence/session-03/ доторх текст файл юм.
